@@ -73,11 +73,11 @@ git checkout --track <remoteneame>/<branch>   -> équivalent ; cette branche ser
 
 git push <remotename> : <remotebranch> -> supprime une branche du serveur
 
-git push <remotename>  <localebranch>: <branch> -> syntaxe global sipas de locale branche, on supprime donc la remote
+git push <remotename>  <localebranch>: <branch> -> syntaxe global si pas de locale branche, on supprime donc la remote
 
 
 Rebase :
-equivalent merge mais patch les commit intermédiaire *** que rebase local pas branch 
+equivalent merge mais patch commit intermédiaire *** que rebase local pas si public/sous branch...
 
 
 http://git.or.cz/gitwiki/GitHosting

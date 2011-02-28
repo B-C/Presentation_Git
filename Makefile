@@ -1,11 +1,13 @@
-OBJ = git.pdf
+OBJ 						= git.pdf
+PDFREADER				= evince
+LATEXPROCESSOR	= pdflatex
 
 all: $(OBJ)
 
 %.pdf: %.tex
-	pdflatex $< $@
-	pdflatex $< $@
-	evince $@
+	$(LATEXPROCESSOR) $< $@
+	$(LATEXPROCESSOR) $< $@
+	$(PDFREADER)	$@
 
 
 clean:

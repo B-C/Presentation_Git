@@ -31,22 +31,22 @@
 
     \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
       \usebeamerfont{author in head/foot}\insertshortauthor
-    \end{beamercolorbox}%
+      \end{beamercolorbox}%
 
-    \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
       \usebeamerfont{title in head/foot}\insertshorttitle
-    \end{beamercolorbox}%
+      \end{beamercolorbox}%
 
-    \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+      \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
       \usebeamerfont{date in head/foot}
-      \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
     \end{beamercolorbox}%
 
-    \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+      \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
       \usebeamerfont{date in head/foot}\insertdate
-  \end{beamercolorbox}}%
+      \end{beamercolorbox}}%
 
-  \vskip0pt%
+      \vskip0pt%
 }
 
 \title[ROSE]{Présentation de Git}
@@ -61,7 +61,7 @@
 \begin{document}
 
 \begin{frame}
-  \titlepage
+\titlepage
 \end{frame}
 
 %------------------ Plan ---------------
@@ -73,21 +73,22 @@
 \section{Présentation}
 \subsection*{Présentation des objectifs}
 \begin{frame}{Présentation des objectifs}
-  \begin{itemize}
-  \item Comprendre ce qu'est un gestionnaire de version et son utilité
-  \item Connaître les commandes de bases pour se débrouiller
-  \item Avoir des éléments de compréhension sur le fonctionnement de Git
-  \item Savoir où chercher en cas de problèmes
-  \end{itemize}
+\begin{itemize}
+\item Comprendre ce qu'est un gestionnaire de version et son utilité
+\item Connaître les commandes de bases pour se débrouiller
+\item Avoir des éléments de compréhension sur le fonctionnement de Git
+\item Savoir où chercher en cas de problèmes
+\end{itemize}
 \end{frame}
 
 \subsection*{Logiciels de gestion de versions}
 \begin{frame}{Logiciels de gestion de versions}
   \begin{itemize}
-  \item 
-  \item 
-  \item 
-  \item 
+    \item Garde une trace des différentes versions d'un projet 
+    \item Facilite le travail en équipe grace aux branches 
+    \item Se couple avec des logiciels qui permettent de comparer les différences entre fichiers 
+    \item Permet la résilience aux pannes suivant que le système est distribué ou non
+    \item Peut être distribué ou non : git est distribué 
   \end{itemize}
 \end{frame}
 
@@ -97,32 +98,46 @@
 
 \subsection*{Installation}
 \begin{frame}{Installation}
+  \begin{itemize}
+    \item paquets à installer (debian/ubuntu) :
+    \item windows :
+    \item mac :
+\end{itemize}
+
+
+
+
 \end{frame}
 
 \subsection*{Configuration}
 \begin{frame}{Configuration}
+  \begin{itemize}
+    \item fichier de configuration \textasciitilde/.gitconfig ou en ligne de commande git config
+    \item 
+  \end{itemize}
+
 \end{frame}
 
 \section{Les Bases de Git}
 
 \subsection*{Statut de fichiers}
 \begin{frame}{Statut de fichiers}
-  \begin{figure}
-    \begin{center}
-      \includegraphics[scale=0.7]{Status_lifecycle.png}
-    \end{center}
-    \tiny
-    \caption{cc progit.org}
-    \label{cc progit.org}
-  \end{figure}
+\begin{figure}
+\begin{center}
+\includegraphics[scale=0.7]{Status_lifecycle.png}
+\end{center}
+\tiny
+\caption{cc progit.org}
+\label{cc progit.org}
+\end{figure}
 \end{frame}
 
 \begin{frame}{Les Bases de Git}
-  \begin{itemize}
-    %\item Créer un dépot : 
-    \item Cloner un dépot :
-  \end{itemize}
-  
+\begin{itemize}
+%\item Créer un dépot : 
+\item Cloner un dépot :
+\end{itemize}
+
 \end{frame}
 
 \section{Le Branching}
@@ -135,11 +150,11 @@
 
 \section{Ressources}
 \begin{frame}{}
-  \begin{itemize}
-    \item \href{http://progit.org/about.html}{Progit}
-    \item \href{http://git.or.cz/gitwiki/GitHosting}{Liste de serveurs Git}
+\begin{itemize}
+\item \href{http://progit.org/about.html}{Progit}
+\item \href{http://git.or.cz/gitwiki/GitHosting}{Liste de serveurs Git}
 
-  \end{itemize}
+\end{itemize}
 \end{frame}
 
 \end{document}

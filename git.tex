@@ -27,6 +27,8 @@
 \setbeamercolor{block body}{bg=fondtexte}
 \setbeamercolor{normal text}{fg=coultexte,bg=fondtexte}
 
+\setbeamertemplate{navigation symbols}{} 
+
 \setbeamertemplate{footline}{
   \hbox{
     \hspace*{-0.06cm}
@@ -117,52 +119,93 @@
     \begin{center}
       \includegraphics[scale=0.7]{img/Status_lifecycle.png}
     \end{center}
-    \tiny
-    \caption{cc progit.org}
-    \label{cc progit.org}
+    \caption{progit.org}
   \end{figure}
 \end{frame}
 
 %------------------------------------------------------------
 % Clément & Bertrand
 
-\section{Gestion de branches}
-\subsection*{Gestion locale}
-\begin{frame}{Gestion locale}
-  \begin{itemize}
-  \item Créer une branche :
-  \item Head ?
-  \end{itemize}
+
+\section{Le Branching}
+\subsection*{Gestion Locale}
+\begin{frame}{Gestion Locale 1/2}
+  \begin{figure}
+    \begin{center}
+      \includegraphics[scale=0.7]{Branch1.png}
+    \end{center}
+    \caption{progit.org}
+  \end{figure}
 \end{frame}
 
-\subsection*{Merger}
-\begin{frame}{Merger}
+\begin{frame}{Gestion Locale 1/2}
   \begin{itemize}
-  \item Merge
-  \item Rebase
+  \item Lister les branches : \emph{git branch}  
+  \item Lister les branches mergées avec la branche courante : \emph{git branch}
+  \item Lister les branches non mergées avec la branche courante : \emph{git branch}  
+  \item Lister les branches : \emph{git branch}  
+  \item Créer une branche : \emph{git branch <name>}
+  \item Supprimer une branche : \emph{git branch -d <name>}
+  \item Déplacer HEAD vers branch : \emph{git checkout <branch>}
+  \item Création et déplacer HEAD : \emph{git checkout -b <branch>}
+  \item Log, dernier commit de chaque branche : \emph{git branch -v}
   \end{itemize}
 \end{frame}
 
 \subsection*{Communication avec le serveur}
-\begin{frame}{Communication avec le serveur}
+\begin{frame}{Communication avec le serveur 1/2}
   \begin{itemize}
   \item Fetch
   \item Push
   \item Pull
+  \item Tracking : push -u / checkout --track / git checkout -b
   \end{itemize}
 \end{frame}
 
-\subsection*{}
-\begin{frame}{}
+\begin{frame}{Communication avec le serveur 2/2}
+  \begin{figure}
+    \begin{center}
+      \includegraphics[scale=0.7]{RemoteBranch.png}
+    \end{center}
+    \caption{progit.org}
+  \end{figure}
+\end{frame}
+
+\subsection*{Merger}
+\begin{frame}{Merger 1/2}
+  \begin{itemize}
+  \item Merge
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{Merger 2/2}
+  \begin{figure}
+    \begin{center}
+      \includegraphics[scale=0.7]{Merge.png}
+    \end{center}
+    \caption{progit.org}
+  \end{figure}
+\end{frame}
+
+\subsection*{Rebase}
+\begin{frame}{Rebase 1/2}
   \begin{itemize}
   \item
   \end{itemize}
 \end{frame}
 
+\begin{frame}{Rebase 2/2}
+  \begin{figure}
+    \begin{center}
+      \includegraphics[scale=0.7]{Rebase.png}
+    \end{center}
+     \caption{progit.org}
+  \end{figure}
+\end{frame}
 %------------------------------------------------------------
 
 \section{Ressources}
-\begin{frame}{}
+\begin{frame}{Ressources}
   \begin{itemize}
   \item \href{http://progit.org/about.html}{Progit}
   \item \href{http://git.or.cz/gitwiki/GitHosting}{Liste de serveurs \git}

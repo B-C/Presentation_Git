@@ -5,7 +5,7 @@ all: $(OBJ)
 %.pdf: %.tex
 	pdflatex $< $@
 	pdflatex $< $@
-	acroread $@
+	evince $@
 
 
 clean:

@@ -5,7 +5,10 @@
 \usepackage[frenchb]{babel}
 \usepackage{pslatex}
 \usepackage{colortbl} 
-\usepackage{calc}  
+\usepackage{calc}
+\usepackage{graphicx}
+\usepackage{hyperref}
+
 
 \usetheme{Warsaw}
 
@@ -71,7 +74,7 @@
 \subsection*{Présentation des objectifs}
 \begin{frame}{Présentation des objectifs}
   \begin{itemize}
-  \item Comprendre ce qu'est un gestionnaire de verion et son utilité
+  \item Comprendre ce qu'est un gestionnaire de version et son utilité
   \item Connaître les commandes de bases pour se débrouiller
   \item Avoir des éléments de compréhension sur le fonctionnement de Git
   \item Savoir où chercher en cas de problèmes
@@ -90,6 +93,14 @@
 
 \subsection*{Git : fonctionnement}
 \begin{frame}{Git : fonctionnement}
+  \begin{figure}
+    \begin{center}
+      \includegraphics[scale=0.7]{Status_lifecycle.png}
+    \end{center}
+    \tiny
+    \caption{cc progit.org}
+    \label{cc progit.org}
+  \end{figure}
 \end{frame}
 
 \section{Installer et configurer Git}
@@ -103,7 +114,12 @@
 \end{frame}
 
 \section{Les Bases de Git}
-\begin{frame}{Créer un dépots}
+\begin{frame}{Les Bases de Git}
+  \begin{itemize}
+    \item Créer un dépot : 
+    \item Cloner un dépot :
+  \end{itemize}
+  
 \end{frame}
 
 \section{Le Branching}
@@ -112,6 +128,15 @@
 
 \section{Utilisation Avancée}
 \begin{frame}{}
+\end{frame}
+
+\section{Ressources}
+\begin{frame}{}
+  \begin{itemize}
+    \item \href{http://progit.org/about.html}{Progit}
+    \item \href{http://git.or.cz/gitwiki/GitHosting}{Liste de serveurs Git}
+
+  \end{itemize}
 \end{frame}
 
 \end{document}

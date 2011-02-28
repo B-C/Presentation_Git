@@ -1,12 +1,12 @@
- OBJ		= git.pdf
- PDFREADER	= evince
- LATEXPROCESSOR	= pdflatex
+ OBJ       = git.pdf
+ PDFREADER = $(shell which evince || which acroread)
+ LATEX     = pdflatex
 
  all: $(OBJ)
 
  %.pdf: %.tex
-	 $(LATEXPROCESSOR) $< $@
-	 $(LATEXPROCESSOR) $< $@
+	 $(LATEX) $< $@
+	 $(LATEX) $< $@
 	 $(PDFREADER)	$@
 
 

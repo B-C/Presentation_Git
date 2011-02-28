@@ -1,16 +1,20 @@
 \documentclass{beamer}
 
-\usepackage[T1]{fontenc} 
+\usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
-\usepackage[frenchb]{babel}
+\usepackage[french]{babel}
 %\usepackage{pslatex}
-%\usepackage{colortbl} 
+%\usepackage{colortbl}
 %\usepackage{calc}
 \usepackage{graphicx}
 \usepackage{hyperref}
+\usepackage{listings}
 
+\lstset{language=bash,basicstyle=\ttfamily}
 
 \usetheme{Warsaw}
+
+\newcommand{\git}{\texttt{git}}
 
 \definecolor{fondtitre}{rgb}{0.20,0.43,0.09}  % vert fonce
 \definecolor{coultitre}{rgb}{0.41,0.05,0.05}  % marron
@@ -37,7 +41,7 @@
 
       \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}
       \usebeamerfont{date in head/foot}
-    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
+    \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
     \end{beamercolorbox}
 
       \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}
@@ -47,32 +51,31 @@
       \vskip0pt
 }
 
-\title[ROSE]{Présentation de Git}
-\author{Bertrand, Clément, Laurent et Vaibhav}
-\institute{Télécom Paristech}
-\date{06 mars 2011}
-
+\title[ROSE]{Gestion de versions : \git}
+\author{Bertrand, Clément, Laurent, Vaibhav.}
+\institute{Télécom ParisTech}
+\date{4 mars 2011}
 
 %---------------------------------------
 
 \begin{document}
 
 \begin{frame}
-\titlepage
+  \titlepage
 \end{frame}
 
 %------------------ Plan ---------------
 \section*{Plan}
-\frame{\frametitle{Plan} \small \tableofcontents}  
+\frame{\frametitle{Plan} \small \tableofcontents}
 
 %------------------ Slides ------------
-\section{Présentation}
+\section{Introduction}
 \subsection*{Présentation des objectifs}
 \begin{frame}{Présentation des objectifs}
   \begin{itemize}
   \item Comprendre ce qu'est un gestionnaire de version et son utilité
   \item Connaître les commandes de bases pour se débrouiller
-  \item Avoir des éléments de compréhension sur le fonctionnement de Git
+  \item Avoir des éléments de compréhension sur le fonctionnement de \git
   \item Savoir où chercher en cas de problèmes
   \end{itemize}
 \end{frame}
@@ -80,15 +83,15 @@
 \subsection*{Logiciels de gestion de versions}
 \begin{frame}{Logiciels de gestion de versions}
   \begin{itemize}
-  \item Garde une trace des différentes versions d'un projet 
-  \item Facilite le travail en équipe grace aux branches 
-  \item Se couple avec des logiciels qui permettent de comparer les différences entre fichiers 
+  \item Garde une trace des différentes versions d'un projet
+  \item Facilite le travail en équipe grace aux branches
+  \item Se couple avec des logiciels qui permettent de comparer les différences entre fichiers
   \item Permet la résilience aux pannes suivant que le système est distribué ou non
-  \item Peut être distribué ou non : git est distribué 
+  \item Peut être distribué ou non : \git est distribué
   \end{itemize}
 \end{frame}
 
-\section{Installer et configurer Git}
+\section{Installer et configurer \git}
 
 \subsection*{Installation}
 \begin{frame}{Installation}
@@ -100,19 +103,19 @@
 \end{frame}
 
 \subsection*{Configuration}
-\begin{frame}{Configuration}
+\begin{frame}[containsverbatim]{Configuration}
   \begin{itemize}
-  \item fichier de configuration \textasciitilde/.gitconfig ou en ligne de commande git config
-  \item 
+  \item fichier de configuration \lstinline|~/.gitconfig| ou en ligne de commande \lstinline|git config|
+  \item
   \end{itemize}
 \end{frame}
 
-\section{Les Bases de Git}
+\section{Les bases de \git}
 \subsection*{Statut de fichiers}
 \begin{frame}{Statut de fichiers}
   \begin{figure}
     \begin{center}
-      \includegraphics[scale=0.7]{Status_lifecycle.png}
+      \includegraphics[scale=0.7]{img/Status_lifecycle.png}
     \end{center}
     \tiny
     \caption{cc progit.org}
@@ -123,9 +126,9 @@
 %------------------------------------------------------------
 % Clément & Bertrand
 
-\section{Le Branching}
-\subsection*{Gestion Locale}
-\begin{frame}{Gestion Locale}
+\section{Gestion de branches}
+\subsection*{Gestion locale}
+\begin{frame}{Gestion locale}
   \begin{itemize}
   \item Créer une branche :
   \item Head ?
@@ -152,7 +155,7 @@
 \subsection*{}
 \begin{frame}{}
   \begin{itemize}
-  \item   
+  \item
   \end{itemize}
 \end{frame}
 
@@ -162,7 +165,7 @@
 \begin{frame}{}
   \begin{itemize}
   \item \href{http://progit.org/about.html}{Progit}
-  \item \href{http://git.or.cz/gitwiki/GitHosting}{Liste de serveurs Git}
+  \item \href{http://git.or.cz/gitwiki/GitHosting}{Liste de serveurs \git}
   \end{itemize}
 \end{frame}
 

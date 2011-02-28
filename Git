@@ -1,0 +1,90 @@
+tracked -> staged -> committed
+.gitignore
+
+git add -> ajouter fichier
+git add -> stager un fichier tracked 
+    	   pour se passer du commit -a
+    	   permet de faire un commit "modulaire"
+git rm
+git mv
+git status
+git diff
+git log -> voir commit
+    	   -p : diff
+	   -n : limiter le nb d'entrée
+	   --stat
+	   --pretty
+	   --graph (si branche)
+	   --since
+	   --until
+
+git commit :  -a	-> update all paths in the index file
+    	      --amend   -> amend the tip of the current branch 
+	      -m        -> use the given message as the commit message
+
+git reset HEAD -- -> pour unstager des fichier
+
+git checkout -- <file>  -> remettre en l'état du précédent commit    ***Dangereux***
+
+git remote ->pour gerer les repositories (_v ; add)
+
+git fetch <remote name> -> get data from remote project : pas de merging
+git pull -> fetch et merge
+git push <remote-name> <branch-name>
+    	   
+git tag
+
+branch :
+
+git branch	       -> liste les branche (* : branche courrante)
+git branch -v 	       -> dernier commit de chaque branche
+git branch <name>      -> crée une branche
+git branch -d <name>   -> suppr branch
+git checkout <branch>  -> déplace HEAD (pointeur sur la branche courante) vers branch 
+    	     	      	 (avec fichiers reverted si branche antérieur / parallèle)
+git checkout -b <name> -> crée une branche et switch sur elle en même temps
+git branch --merged    -> pour voir les branches mergées avec la branche courrante (peuvent donc être supprimées)
+git branche --unmerged
+
+pour merger :
+
+aller dans la branche pu merger : par exemple git checkout master
+puis git merge <branch>
+
+si merge conflict -> git status, 
+   	 	     git mergetool 
+		     git commit ***important***
+-> Ces branches sont locales !!!!
+
+Idées :
+      Que du code STABLE dans la master -> dès le début faire une branche dévelop
+      faire des branches SOUVENT -> context switch aisée
+      pusher seulemet les truc public
+
+git fetch origin met entre autre à jour les pointeur de branch remote (ex origin/master)
+
+pour pusher branch :
+git push <remote (origin)> <branch>
+
+après un nouveau fetch, pour travailler sur ladite branche :
+git checkout -b <branch> <remoteneame (origin)>/<branch>
+
+git checkout --track <remoteneame>/<branch>   -> équivalent ; cette branche sera automatiquement pushé et pullé
+
+git push <remotename> : <remotebranch> -> supprime une branche du serveur
+
+git push <remotename>  <localebranch>: <branch> -> syntaxe global sipas de locale branche, on supprime donc la remote
+
+
+Rebase :
+equivalent merge mais patch les commit intermédiaire *** que rebase local pas branch 
+
+
+http://git.or.cz/gitwiki/GitHosting
+
+git stash -> sauvegarde le working directory (
+    	     avant de changer de branche par ex qd on veux pas commiter)
+git stash apply -> charger
+
+git blame -L <ligne top>,<ligne bottom> <file>  -> savoir la derniere personne à avoir fait des modifs à ces lignes
+git blame -C -L <ligne top>,<ligne bottom> <file> -> trouve l'origine de copier coller

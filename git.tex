@@ -19,8 +19,8 @@
 \definecolor{fondtitre}{rgb}{0.20,0.43,0.09}  % vert fonce
 \definecolor{coultitre}{rgb}{0.41,0.05,0.05}  % marron
 \definecolor{fondtexte}{rgb}{1,1,1}           % fond blanc
-\definecolor{autre1}{RGB}{250,150,5}          %vieux mauve
-\definecolor{autre2}{RGB}{235,175,235}        %horrible r
+\definecolor{autre1}{RGB}{250,150,5}          % vieux mauve
+\definecolor{autre2}{RGB}{235,175,235}        % horrible r
 \colorlet{coultexte}{black}
 
 \setbeamercolor{structure}{fg=coultitre, bg=fondtitre!40}
@@ -132,23 +132,23 @@
 \begin{frame}{Gestion Locale 1/2}
   \begin{figure}
     \begin{center}
-      \includegraphics[scale=0.7]{Branch1.png}
+      \includegraphics[scale=0.7]{img/Branch1.png}
     \end{center}
     \caption{progit.org}
   \end{figure}
 \end{frame}
 
-\begin{frame}{Gestion Locale 1/2}
+\begin{frame}[containsverbatim]{Gestion Locale 1/2}
   \begin{itemize}
-  \item Lister les branches : \emph{git branch}  
-  \item Lister les branches mergées avec la branche courante : \emph{git branch}
-  \item Lister les branches non mergées avec la branche courante : \emph{git branch}  
-  \item Lister les branches : \emph{git branch}  
-  \item Créer une branche : \emph{git branch <name>}
-  \item Supprimer une branche : \emph{git branch -d <name>}
-  \item Déplacer HEAD vers branch : \emph{git checkout <branch>}
-  \item Création et déplacer HEAD : \emph{git checkout -b <branch>}
-  \item Log, dernier commit de chaque branche : \emph{git branch -v}
+  \item Lister les branches : \lstinline|git branch|  
+  \item Lister les branches mergées avec la branche courante : \lstinline|git branch|
+  \item Lister les branches non mergées avec la branche courante : \lstinline|git branch|  
+  \item Lister les branches : \lstinline|git branch|  
+  \item Créer une branche : \lstinline|git branch <name>|
+  \item Supprimer une branche : \lstinline|git branch -d <name>|
+  \item Déplacer HEAD vers branch : \lstinline|git checkout <branch>|
+  \item Création et déplacer HEAD : \lstinline|git checkout -b <branch>|
+  \item Log, dernier commit de chaque branche : \lstinline|git branch -v|
   \end{itemize}
 \end{frame}
 
@@ -165,7 +165,7 @@
 \begin{frame}{Communication avec le serveur 2/2}
   \begin{figure}
     \begin{center}
-      \includegraphics[scale=0.7]{RemoteBranch.png}
+      \includegraphics[scale=0.7]{img/RemoteBranch.png}
     \end{center}
     \caption{progit.org}
   \end{figure}
@@ -181,7 +181,7 @@
 \begin{frame}{Merger 2/2}
   \begin{figure}
     \begin{center}
-      \includegraphics[scale=0.7]{Merge.png}
+      \includegraphics[scale=0.7]{img/Merge.png}
     \end{center}
     \caption{progit.org}
   \end{figure}
@@ -197,7 +197,7 @@
 \begin{frame}{Rebase 2/2}
   \begin{figure}
     \begin{center}
-      \includegraphics[scale=0.7]{Rebase.png}
+      \includegraphics[scale=0.7]{img/Rebase.png}
     \end{center}
      \caption{progit.org}
   \end{figure}

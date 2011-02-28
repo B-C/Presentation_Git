@@ -26,7 +26,7 @@ git reset HEAD -- -> pour unstager des fichier
 
 git checkout -- <file>  -> remettre en l'état du précédent commit    ***Dangereux***
 
-git remote ->pour gerer les repositories (_v ; add)
+git remote ->pour gerer les repositories (-v ; add)
 
 git fetch <remote name> -> get data from remote project : pas de merging
 git pull -> fetch et merge

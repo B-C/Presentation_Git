@@ -1,3 +1,4 @@
+# This Makefile sucks !
 OBJ = git.pdf
 
 all: $(OBJ)

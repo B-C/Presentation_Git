@@ -3,9 +3,9 @@
 \usepackage[T1]{fontenc} 
 \usepackage[utf8]{inputenc}
 \usepackage[frenchb]{babel}
-\usepackage{pslatex}
-\usepackage{colortbl} 
-\usepackage{calc}
+%\usepackage{pslatex}
+%\usepackage{colortbl} 
+%\usepackage{calc}
 \usepackage{graphicx}
 \usepackage{hyperref}
 
@@ -14,39 +14,37 @@
 
 \definecolor{fondtitre}{rgb}{0.20,0.43,0.09}  % vert fonce
 \definecolor{coultitre}{rgb}{0.41,0.05,0.05}  % marron
-\definecolor{fondtexte}{rgb}{1,1,1}     % fond blanc
-\definecolor{autre1}{RGB}{250,150,5}  %vieux mauve
-\definecolor{autre2}{RGB}{235,175,235} %horrible r
+\definecolor{fondtexte}{rgb}{1,1,1}           % fond blanc
+\definecolor{autre1}{RGB}{250,150,5}          %vieux mauve
+\definecolor{autre2}{RGB}{235,175,235}        %horrible r
 \colorlet{coultexte}{black}
-
 
 \setbeamercolor{structure}{fg=coultitre, bg=fondtitre!40}
 \setbeamercolor{block body}{bg=fondtexte}
 \setbeamercolor{normal text}{fg=coultexte,bg=fondtexte}
 
-
 \setbeamertemplate{footline}{
   \hbox{
     \hspace*{-0.06cm}
 
-    \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+    \begin{beamercolorbox}[wd=.3\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}
       \usebeamerfont{author in head/foot}\insertshortauthor
-      \end{beamercolorbox}%
+      \end{beamercolorbox}
 
-      \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}%
+      \begin{beamercolorbox}[wd=.4\paperwidth,ht=2.25ex,dp=1ex,center]{title in head/foot}
       \usebeamerfont{title in head/foot}\insertshorttitle
-      \end{beamercolorbox}%
+      \end{beamercolorbox}
 
-      \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+      \begin{beamercolorbox}[wd=.1\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}
       \usebeamerfont{date in head/foot}
     \insertframenumber{} / \inserttotalframenumber\hspace*{2ex} 
-    \end{beamercolorbox}%
+    \end{beamercolorbox}
 
-      \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}%
+      \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{date in head/foot}
       \usebeamerfont{date in head/foot}\insertdate
-      \end{beamercolorbox}}%
+      \end{beamercolorbox}}
 
-      \vskip0pt%
+      \vskip0pt
 }
 
 \title[ROSE]{Présentation de Git}
@@ -55,7 +53,6 @@
 \date{06 mars 2011}
 
 
-%---------------------------------------
 %---------------------------------------
 
 \begin{document}
@@ -67,94 +64,106 @@
 %------------------ Plan ---------------
 \section*{Plan}
 \frame{\frametitle{Plan} \small \tableofcontents}  
-%
 
 %------------------ Slides ------------
 \section{Présentation}
 \subsection*{Présentation des objectifs}
 \begin{frame}{Présentation des objectifs}
-\begin{itemize}
-\item Comprendre ce qu'est un gestionnaire de version et son utilité
-\item Connaître les commandes de bases pour se débrouiller
-\item Avoir des éléments de compréhension sur le fonctionnement de Git
-\item Savoir où chercher en cas de problèmes
-\end{itemize}
+  \begin{itemize}
+  \item Comprendre ce qu'est un gestionnaire de version et son utilité
+  \item Connaître les commandes de bases pour se débrouiller
+  \item Avoir des éléments de compréhension sur le fonctionnement de Git
+  \item Savoir où chercher en cas de problèmes
+  \end{itemize}
 \end{frame}
 
 \subsection*{Logiciels de gestion de versions}
 \begin{frame}{Logiciels de gestion de versions}
   \begin{itemize}
-    \item Garde une trace des différentes versions d'un projet 
-    \item Facilite le travail en équipe grace aux branches 
-    \item Se couple avec des logiciels qui permettent de comparer les différences entre fichiers 
-    \item Permet la résilience aux pannes suivant que le système est distribué ou non
-    \item Peut être distribué ou non : git est distribué 
+  \item Garde une trace des différentes versions d'un projet 
+  \item Facilite le travail en équipe grace aux branches 
+  \item Se couple avec des logiciels qui permettent de comparer les différences entre fichiers 
+  \item Permet la résilience aux pannes suivant que le système est distribué ou non
+  \item Peut être distribué ou non : git est distribué 
   \end{itemize}
 \end{frame}
-
-
 
 \section{Installer et configurer Git}
 
 \subsection*{Installation}
 \begin{frame}{Installation}
   \begin{itemize}
-    \item paquets à installer (debian/ubuntu) :
-    \item windows :
-    \item mac :
-\end{itemize}
-
-
-
-
+  \item paquets à installer (debian/ubuntu) :
+  \item windows :
+  \item mac :
+  \end{itemize}
 \end{frame}
 
 \subsection*{Configuration}
 \begin{frame}{Configuration}
   \begin{itemize}
-    \item fichier de configuration \textasciitilde/.gitconfig ou en ligne de commande git config
-    \item 
+  \item fichier de configuration \textasciitilde/.gitconfig ou en ligne de commande git config
+  \item 
   \end{itemize}
-
 \end{frame}
 
 \section{Les Bases de Git}
-
 \subsection*{Statut de fichiers}
 \begin{frame}{Statut de fichiers}
-\begin{figure}
-\begin{center}
-\includegraphics[scale=0.7]{Status_lifecycle.png}
-\end{center}
-\tiny
-\caption{cc progit.org}
-\label{cc progit.org}
-\end{figure}
+  \begin{figure}
+    \begin{center}
+      \includegraphics[scale=0.7]{Status_lifecycle.png}
+    \end{center}
+    \tiny
+    \caption{cc progit.org}
+    \label{cc progit.org}
+  \end{figure}
 \end{frame}
 
-\begin{frame}{Les Bases de Git}
-\begin{itemize}
-%\item Créer un dépot : 
-\item Cloner un dépot :
-\end{itemize}
-
-\end{frame}
+%------------------------------------------------------------
+% Clément & Bertrand
 
 \section{Le Branching}
-\begin{frame}{}
+\subsection*{Gestion Locale}
+\begin{frame}{Gestion Locale}
+  \begin{itemize}
+  \item Créer une branche :
+  \item Head ?
+  \end{itemize}
 \end{frame}
 
-%% \section{Utilisation Avancée}
-%% \begin{frame}{}
-%% \end{frame}
+\subsection*{Merger}
+\begin{frame}{Merger}
+  \begin{itemize}
+  \item Merge
+  \item Rebase
+  \end{itemize}
+\end{frame}
+
+\subsection*{Communication avec le serveur}
+\begin{frame}{Communication avec le serveur}
+  \begin{itemize}
+  \item Fetch
+  \item Push
+  \item Pull
+  \end{itemize}
+\end{frame}
+
+\subsection*{}
+\begin{frame}{}
+  \begin{itemize}
+  \item   
+  \end{itemize}
+\end{frame}
+
+%------------------------------------------------------------
 
 \section{Ressources}
 \begin{frame}{}
-\begin{itemize}
-\item \href{http://progit.org/about.html}{Progit}
-\item \href{http://git.or.cz/gitwiki/GitHosting}{Liste de serveurs Git}
-
-\end{itemize}
+  \begin{itemize}
+  \item \href{http://progit.org/about.html}{Progit}
+  \item \href{http://git.or.cz/gitwiki/GitHosting}{Liste de serveurs Git}
+  \end{itemize}
 \end{frame}
 
 \end{document}

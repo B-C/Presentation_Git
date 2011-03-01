@@ -123,6 +123,109 @@
   \end{figure}
 \end{frame}
 
+\subsection*{Commandes de Base}
+\begin{frame}[containsverbatim]{Commandes de Base}
+  \begin{itemize}
+  \item \lstinline|git clone| - clone un dépôt distant \lstinline|git clone [url]| 
+\begin{lstlisting}
+$ git clone git://github.com/schacon/grit.git
+\end{lstlisting}
+  \item \lstinline|git status| - Afficher l'état de l'arbre de travail
+\begin{lstlisting}
+$ git status
+# On branch master
+nothing to commit (working directory clean)
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Commandes de Base...}
+  \begin{itemize}
+
+\item \lstinline|git log <filename>| - Afficher commettre journaux. avec -p, afficher patch aussi 
+\begin{lstlisting}
+$ git log git.tex 
+commit 8fdb1efff1b859109718ec6c1015ee97a168dc93 
+Author: Bertrand Chazot <chazot@enst.fr> 
+Date:   Tue Mar 1 17:21:17 2011 +0100 
+minor fixs
+
+commit cbd5a7ad5603ef3e33cfc00b9ea119519fcaf1fe 
+Author: Clement Moussu <moussu@telecom-paristech.fr>
+Date:   Mon Feb 28 22:45:03 2011 +0100
+
+Fixups.
+\end{lstlisting}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Commandes de Base...}
+  \begin{itemize}
+\item \lstinline|git diff| - Afficher les modifications entre les engage, l'engagement et de travail des arbres, etc
+\begin{lstlisting}
+$ git diff git.tex
+diff --git a/git.tex b/git.tex
+index bc5d0e8..d0d5409 100644
+--- a/git.tex
++++ b/git.tex
+@@ -123,6 +123,16 @@
+end{figure}
+end{frame}
+\end{lstlisting}
+
+\end{itemize}
+\end{frame}
+\begin{frame}[containsverbatim]{Commandes de Base...}
+  \begin{itemize}
+\item \lstinline|git add| - ajoute de nouveaux objets "blobs" dans la base des objets pour chaque fichier modifié depuis le dernier commit.
+Les objets précédents restent inchangés.
+\begin{lstlisting}
+$ git add git.tex
+\end{lstlisting}
+
+\item \lstinline|git add -u| - Mises à jour des changements dans les fichiers déjà "staged"
+
+  \end{itemize}
+\end{frame}
+
+\begin{frame}[containsverbatim]{Commandes de Base...}
+  \begin{itemize}
+\item \lstinline|git diff --cached|- Afficher les modifications sur la "staged" zone.
+\begin{lstlisting}
+$ git diff --cached git.tex
+\end{lstlisting}
+
+\item \lstinline|git reset HEAD <filename>| 
+\begin{lstlisting}
+$ git reset HEAD git.tex
+Unstaged changes after reset:
+M       git.tex
+\end{lstlisting}
+
+\item \lstinline|git rm|- Supprimer les fichiers de l'arbre de travail et de l'indice 
+\begin{lstlisting}
+$ git rm git.tex
+\end{lstlisting}
+\item \lstinline|git rm --cached|
+    
+  \end{itemize}
+\end{frame}
+\begin{frame}[containsverbatim]{Commandes de Base...}
+  \begin{itemize}
+\item \lstinline|git commit|-Enregistrez les changements au dépôt "local"
+\begin{lstlisting}
+$ git commit
+$ git commit git.tex
+\end{lstlisting}
+
+\item \lstinline|git commit -a| 
+\begin{lstlisting}
+$ git commit -a
+\end{lstlisting}
+  
+  \end{itemize}
+\end{frame}
+
 %------------------------------------------------------------
 % Clément & Bertrand
 

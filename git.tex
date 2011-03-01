@@ -27,7 +27,7 @@
 \setbeamercolor{block body}{bg=fondtexte}
 \setbeamercolor{normal text}{fg=coultexte,bg=fondtexte}
 
-\setbeamertemplate{navigation symbols}{} 
+\setbeamertemplate{navigation symbols}{}
 
 \setbeamertemplate{footline}{
   \hbox{
@@ -88,7 +88,7 @@
   \item Versionnage d'un projet
   \item Travail en équipe
   \item Résilience aux pannes
-  \item Architecture distribuée ou non 
+  \item Architecture distribuée ou non
   \end{itemize}
 \end{frame}
 
@@ -97,8 +97,8 @@
 \subsection*{Installation}
 \begin{frame}{Installation}
   \begin{itemize}
-  \item paquets debian/ubuntu : git / éventuellement qgit/git-gui/meld 
-  \item configuration 
+  \item paquets debian/ubuntu : git / éventuellement qgit/git-gui/meld
+  \item configuration
   \item initialisation ou clonage
   \end{itemize}
 \end{frame}
@@ -241,10 +241,10 @@ $ git commit -a
 
 \begin{frame}[containsverbatim]{Gestion locale 2/2}
   \begin{itemize}
-  \item Lister les branches : \lstinline|git branch|  
+  \item Lister les branches : \lstinline|git branch|
   \item Lister les branches mergées avec la branche courante : \lstinline|git branch|
-  \item Lister les branches non mergées avec la branche courante : \lstinline|git branch|  
-  \item Lister les branches : \lstinline|git branch|  
+  \item Lister les branches non mergées avec la branche courante : \lstinline|git branch|
+  \item Lister les branches : \lstinline|git branch|
   \item Créer une branche : \lstinline|git branch <name>|
   \item Supprimer une branche : \lstinline|git branch -d <name>|
   \item Déplacer HEAD vers branch : \lstinline|git checkout <branch>|
@@ -298,11 +298,143 @@ $ git commit -a
 \begin{frame}{Rebase 2/2}
   \begin{figure}
     \begin{center}
-      \includegraphics[scale=0.7]{img/Rebase.png}
+    \includegraphics[scale=0.7]{img/Rebase.png}
     \end{center}
     \caption{progit.org}
   \end{figure}
 \end{frame}
+
+\begin{frame}{}
+  \begin{columns}
+    \begin{column}{0.60\textwidth}
+      \begin{itemize}
+      \item \lstinline|git clone user@host:repo.git|
+      \end{itemize}
+    \end{column}
+    \begin{column}{0.40\textwidth}
+      \includegraphics[width=\textwidth]{img/1.pdf}
+    \end{column}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/2.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \begin{itemize}
+  \item \lstinline|git checkout master|
+  \item \lstinline|git branch b2|
+  \item \lstinline|git checkout b2|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/3.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \begin{itemize}
+  \item do some changes
+  \item \lstinline|git add <files>|
+  \item \lstinline|git commit|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/3-bis.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/3-ter.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/3-quad.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \begin{itemize}
+  \item \lstinline|git push origin b2|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/4.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \begin{itemize}
+  \item \lstinline|git rebase master b1|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/5.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \begin{itemize}
+  \item \lstinline|git push -f origin b1|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/6.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \begin{itemize}
+  \item \lstinline|git push origin b1:master|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/7.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \begin{itemize}
+  \item \lstinline|git pull origin master|
+  \item \lstinline|git branch -D b2|
+  \item \lstinline|git push origin :b2|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/8.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \begin{itemize}
+  \item \lstinline|git rebase master b2|
+  \item \lstinline|git push origin b2|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/9.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \begin{itemize}
+  \item \lstinline|git push origin b2:master|
+  \item \lstinline|git branch -D b2|
+  \item \lstinline|git push origin :b2|
+  \item \lstinline|git pull origin master|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \includegraphics[width=\textwidth]{img/10.pdf}
+\end{frame}
+
+\begin{frame}{}
+  \begin{center}
+  \Huge \dots
+  \end{center}
+\end{frame}
+
 %------------------------------------------------------------
 
 \section{Ressources}

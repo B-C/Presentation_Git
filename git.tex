@@ -14,7 +14,7 @@
 
 \usetheme{Warsaw}
 
-\newcommand{\git}{\texttt{git}}
+\newcommand{\git}{\texttt{git}\xspace}
 
 \definecolor{fondtitre}{rgb}{0.20,0.43,0.09}  % vert fonce
 \definecolor{coultitre}{rgb}{0.40,0.04,0.05}  % marron
@@ -111,7 +111,7 @@
     \begin{center}
       \includegraphics[scale=0.7]{img/Status_lifecycle.png}
     \end{center}
-    \caption{progit.org}
+    \caption{source : progit.org}
   \end{figure}
 \end{frame}
 
@@ -128,9 +128,6 @@
   \item \lstinline|git log| - afficher l'historique
   \end{itemize}
 \end{frame}
-
-%------------------------------------------------------------
-% Clément & Bertrand
 
 \section{Gestion de branches}
 \subsection*{Gestion locale}
@@ -170,7 +167,7 @@
     \begin{center}
       \includegraphics[scale=1]{img/Merge.png}
     \end{center}
-    \caption{progit.org}
+    \caption{source : progit.org}
   \end{figure}
 \end{frame}
 
@@ -184,134 +181,177 @@
     \item[] \lstinline|git mergetool|
     \item[] \lstinline|git commit|
     \end{itemize}
-  \item \lstinline|git pull| - fetch + merge
+  \item \lstinline|git pull| - fetch puis merge
   \end{itemize}
 \end{frame}
 
 \section{Exemple}
 \begin{frame}{}
+  \begin{center}
+  \includegraphics[width=0.5\textwidth]{img/1.pdf}
+  \end{center}
+\end{frame}
+
+\begin{frame}{}
+  \begin{center}
+  \includegraphics[width=0.85\textwidth]{img/2.pdf}
+  \end{center}
+  \begin{itemize}
+  \small
+  \item \lstinline|git clone user@host:repo.git|
+  \end{itemize}
+\end{frame}
+
+\begin{frame}{}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/3.pdf}
   \begin{columns}
-    \begin{column}{0.60\textwidth}
-      \begin{itemize}
-      \item \lstinline|git clone user@host:repo.git|
-      \end{itemize}
-    \end{column}
-    \begin{column}{0.40\textwidth}
-      \includegraphics[width=\textwidth]{img/1.pdf}
-    \end{column}
+    \small
+    \column{0.5\textwidth}
+    \begin{itemize}
+    \item \lstinline|git checkout master|
+    \item \lstinline|git branch b2|
+    \end{itemize}
+    \column{0.5\textwidth}
+    \begin{itemize}
+    \item \lstinline|git checkout b2|
+    \end{itemize}
   \end{columns}
 \end{frame}
 
 \begin{frame}{}
-  \includegraphics[width=\textwidth]{img/2.pdf}
-\end{frame}
-
-\begin{frame}{}
-  \begin{itemize}
-  \item \lstinline|git checkout master|
-  \item \lstinline|git branch b2|
-  \item \lstinline|git checkout b2|
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{}
-  \includegraphics[width=\textwidth]{img/3.pdf}
-\end{frame}
-
-\begin{frame}{}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/3-bis.pdf}
+  \begin{columns}
+  \small
+  \column{0.5\textwidth}
   \begin{itemize}
   \item faire changements
   \item \lstinline|git add <files>|
+  \end{itemize}
+  \column{0.5\textwidth}
+  \begin{itemize}
   \item \lstinline|git commit|
   \end{itemize}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{}
-  \includegraphics[width=\textwidth]{img/3-bis.pdf}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/3-ter.pdf}
+  \begin{columns}
+  \small
+  \column{0.5\textwidth}
+  \begin{itemize}
+  \item faire changements
+  \item \lstinline|git add <files>|
+  \end{itemize}
+  \column{0.5\textwidth}
+  \begin{itemize}
+  \item \lstinline|git commit|
+  \end{itemize}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{}
-  \includegraphics[width=\textwidth]{img/3-ter.pdf}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/3-quad.pdf}
+  \begin{columns}
+  \small
+  \column{0.5\textwidth}
+  \begin{itemize}
+  \item faire changements
+  \item \lstinline|git add <files>|
+  \end{itemize}
+  \column{0.5\textwidth}
+  \begin{itemize}
+  \item \lstinline|git commit|
+  \end{itemize}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{}
-  \includegraphics[width=\textwidth]{img/3-quad.pdf}
-\end{frame}
-
-\begin{frame}{}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/4.pdf}
+  \begin{columns}
+  \small
+  \column{\textwidth}
   \begin{itemize}
   \item \lstinline|git push origin b2|
   \end{itemize}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{}
-  \includegraphics[width=\textwidth]{img/4.pdf}
-\end{frame}
-
-\begin{frame}{}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/5.pdf}
   \begin{itemize}
+  \small
   \item \lstinline|git rebase master b1|
   \end{itemize}
 \end{frame}
 
 \begin{frame}{}
-  \includegraphics[width=\textwidth]{img/5.pdf}
-\end{frame}
-
-\begin{frame}{}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/6.pdf}
   \begin{itemize}
+  \small
   \item \lstinline|git push -f origin b1|
   \end{itemize}
 \end{frame}
 
 \begin{frame}{}
-  \includegraphics[width=\textwidth]{img/6.pdf}
-\end{frame}
-
-\begin{frame}{}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/7.pdf}
   \begin{itemize}
+  \small
   \item \lstinline|git push origin b1:master|
   \end{itemize}
 \end{frame}
 
 \begin{frame}{}
-  \includegraphics[width=\textwidth]{img/7.pdf}
-\end{frame}
-
-\begin{frame}{}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/8.pdf}
+  \begin{columns}
+  \small
+  \column{0.5\textwidth}
   \begin{itemize}
   \item \lstinline|git pull origin master|
-  \item \lstinline|git branch -D b2|
-  \item \lstinline|git push origin :b2|
+  \item \lstinline|git branch -D b1|
   \end{itemize}
-\end{frame}
-
-\begin{frame}{}
-  \includegraphics[width=\textwidth]{img/8.pdf}
-\end{frame}
-
-\begin{frame}{}
+  \column{0.5\textwidth}
   \begin{itemize}
+  \item \lstinline|git push origin :b1|
+  \end{itemize}
+  \end{columns}
+\end{frame}
+
+\begin{frame}{}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/9.pdf}
+  \begin{itemize}
+  \small
   \item \lstinline|git rebase master b2|
   \item \lstinline|git push origin b2|
   \end{itemize}
 \end{frame}
 
 \begin{frame}{}
-  \includegraphics[width=\textwidth]{img/9.pdf}
-\end{frame}
-
-\begin{frame}{}
-  \begin{itemize}
-  \item \lstinline|git push origin b2:master|
-  \item \lstinline|git branch -D b2|
-  \item \lstinline|git push origin :b2|
-  \item \lstinline|git pull origin master|
-  \end{itemize}
-\end{frame}
-
-\begin{frame}{}
-  \includegraphics[width=\textwidth]{img/10.pdf}
+  \centering
+  \includegraphics[width=0.85\textwidth]{img/10.pdf}
+  \begin{columns}
+    \small
+    \column{0.53\textwidth}
+    \begin{itemize}
+    \item \lstinline|git push origin b2:master|
+    \item \lstinline|git branch -D b2|
+    \end{itemize}
+    \column{0.47\textwidth}
+    \begin{itemize}
+    \item \lstinline|git push origin :b2|
+    \item \lstinline|git pull origin master|
+    \end{itemize}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{}
@@ -319,8 +359,6 @@
   \Huge \dots
   \end{center}
 \end{frame}
-
-%------------------------------------------------------------
 
 \section{Ressources}
 \begin{frame}{Ressources}

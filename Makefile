@@ -7,7 +7,7 @@
  %.pdf: %.tex
 	 $(LATEX) $< $@
 	 $(LATEX) $< $@
-	 $(PDFREADER)	$@
+	 $(PDFREADER)	$@&
 
 
  clean:

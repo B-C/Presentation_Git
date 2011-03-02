@@ -219,7 +219,7 @@ $ git commit git.tex
 
 \item \lstinline|git commit -a| 
 \begin{lstlisting}
-$ git commit -a
+$ git commit -a%$
 \end{lstlisting}
   
   \end{itemize}
@@ -233,7 +233,7 @@ $ git commit -a
 \begin{frame}{Gestion locale 1/2}
   \begin{figure}
     \begin{center}
-      \includegraphics[scale=0.7]{img/Branch1.png}
+      \includegraphics[scale=0.8]{img/Branch1.png}
     \end{center}
     \caption{progit.org}
   \end{figure}
@@ -242,13 +242,12 @@ $ git commit -a
 \begin{frame}[containsverbatim]{Gestion locale 2/2}
   \begin{itemize}
   \item Lister les branches : \lstinline|git branch|
-  \item Lister les branches mergées avec la branche courante : \lstinline|git branch|
-  \item Lister les branches non mergées avec la branche courante : \lstinline|git branch|
-  \item Lister les branches : \lstinline|git branch|
+  \item Branches mergées avec la branche courante : \lstinline|git branch --merged|
+  \item Branches non mergées avec la branche courante : \lstinline|git branch --merged|
   \item Créer une branche : \lstinline|git branch <name>|
   \item Supprimer une branche : \lstinline|git branch -d <name>|
-  \item Déplacer HEAD vers branch : \lstinline|git checkout <branch>|
-  \item Création et déplacer HEAD : \lstinline|git checkout -b <branch>|
+  \item Déplacer HEAD vers une branche/un commit : \lstinline|git checkout <branch\|commit>|
+  \item Création et déplacement de HEAD : \lstinline|git checkout -b <branch>|
   \item Log, dernier commit de chaque branche : \lstinline|git branch -v|
   \end{itemize}
 \end{frame}
@@ -256,17 +255,24 @@ $ git commit -a
 \subsection*{Communication avec le serveur}
 \begin{frame}{Communication avec le serveur 1/2}
   \begin{itemize}
-  \item Fetch
-  \item Push
-  \item Pull
-  \item Tracking : push -u / checkout --track / git checkout -b
+  \item Se synchroniser avec le serveur : \lstinline|git fetch|
+  \item Mettre à jour une branche du serveur : 
+    \lstinline|git push <remote> <branch>:<remotebranch>|
+  \item Tracking : 
+    \begin{itemize} 
+    \item[] \lstinline|git push -u| 
+    \item[] \lstinline|git checkout -b [branch] [remotename]/[branch]|
+    \item[] \lstinline|git checkout --track|, version courte
+    \end{itemize}
+  \item Supprimer une branche :
+    \lstinline|git push <remote> :<remotebranch>|
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Communication avec le serveur 2/2}
   \begin{figure}
     \begin{center}
-      \includegraphics[scale=0.7]{img/RemoteBranch.png}
+      \includegraphics[scale=1]{img/RemoteBranch.png}
     \end{center}
     \caption{progit.org}
   \end{figure}
@@ -275,14 +281,22 @@ $ git commit -a
 \subsection*{Merger}
 \begin{frame}{Merger 1/2}
   \begin{itemize}
-  \item Merge
+  \item \lstinline|git checkout <branch where to merge>|
+  \item \lstinline|git merge <merged branch>|
+  \item si \emph{merge conflict}
+    \begin{itemize}
+    \item[]  \lstinline|git status|
+    \item[]  \lstinline|git mergetool|
+    \item[]  \lstinline|git commit|
+    \end{itemize}
+  \item fetch + merge : \lstinline|git pull|
   \end{itemize}
 \end{frame}
 
 \begin{frame}{Merger 2/2}
   \begin{figure}
     \begin{center}
-      \includegraphics[scale=0.7]{img/Merge.png}
+      \includegraphics[scale=1]{img/Merge.png}
     \end{center}
     \caption{progit.org}
   \end{figure}
@@ -291,14 +305,18 @@ $ git commit -a
 \subsection*{Rebase}
 \begin{frame}{Rebase 1/2}
   \begin{itemize}
-  \item r
+  \item \lstinline|git checkout <rebased branch>|
+  \item \lstinline|git rebase <branch where to rebase|
   \end{itemize}
+  \emph{**Ne pas rebaser des branches publics 
+    ou ayant des sous branches**}
+  
 \end{frame}
 
 \begin{frame}{Rebase 2/2}
   \begin{figure}
     \begin{center}
-    \includegraphics[scale=0.7]{img/Rebase.png}
+    \includegraphics[scale=1]{img/Rebase.png}
     \end{center}
     \caption{progit.org}
   \end{figure}

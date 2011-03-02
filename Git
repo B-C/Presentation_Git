@@ -24,7 +24,7 @@ git commit :  -a	-> update all paths in the index file
 
 git reset HEAD -- -> pour unstager des fichier
 
-git checkout -- <file>  -> remettre en l'état du précédent commit    ***Dangereux***
+git checkout -- <file>  -> remettre en l'état du précédent commit
 
 git remote ->pour gerer les repositories (-v ; add)
 
@@ -40,8 +40,7 @@ git branch	       -> liste les branche (* : branche courrante)
 git branch -v 	       -> dernier commit de chaque branche
 git branch <name>      -> crée une branche
 git branch -d <name>   -> suppr branch
-git checkout <branch>  -> déplace HEAD (pointeur sur la branche courante) vers branch 
-    	     	      	 (avec fichiers reverted si branche antérieur / parallèle)
+git checkout <commit/branch>  -> déplace HEAD (pointeur sur la branche courante) vers branch/commit
 git checkout -b <name> -> crée une branche et switch sur elle en même temps
 git branch --merged    -> pour voir les branches mergées avec la branche courrante (peuvent donc être supprimées)
 git branche --unmerged

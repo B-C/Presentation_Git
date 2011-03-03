@@ -186,19 +186,23 @@
 \end{frame}
 
 \section{Exemple}
-\begin{frame}{}
-  \begin{center}
-  \includegraphics[width=0.5\textwidth]{img/1.pdf}
-  \end{center}
+\begin{frame}{Exemple}
+  \begin{columns}
+  \begin{column}{0.5\textwidth}
+  \huge Dépot distant :
+  \end{column}
+  \begin{column}{0.5\textwidth}
+  \includegraphics[width=0.70\textwidth]{img/1.pdf}
+  \end{column}
+  \end{columns}
 \end{frame}
 
 \begin{frame}{}
-  \begin{center}
+  \centering
   \includegraphics[width=0.85\textwidth]{img/2.pdf}
-  \end{center}
   \begin{itemize}
   \small
-  \item \lstinline|git clone user@host:repo.git|
+  \item \lstinline|git clone user@host:repo.git| \vspace{0.52cm} \\
   \end{itemize}
 \end{frame}
 
@@ -206,14 +210,15 @@
   \centering
   \includegraphics[width=0.85\textwidth]{img/3.pdf}
   \begin{columns}
-    \small
     \column{0.5\textwidth}
     \begin{itemize}
+    \small
     \item \lstinline|git checkout master|
     \item \lstinline|git branch b2|
     \end{itemize}
     \column{0.5\textwidth}
     \begin{itemize}
+    \small
     \item \lstinline|git checkout b2|
     \end{itemize}
   \end{columns}
@@ -223,14 +228,15 @@
   \centering
   \includegraphics[width=0.85\textwidth]{img/3-bis.pdf}
   \begin{columns}
-  \small
   \column{0.5\textwidth}
   \begin{itemize}
+  \small
   \item faire changements
   \item \lstinline|git add <files>|
   \end{itemize}
   \column{0.5\textwidth}
   \begin{itemize}
+  \small
   \item \lstinline|git commit|
   \end{itemize}
   \end{columns}
@@ -240,14 +246,15 @@
   \centering
   \includegraphics[width=0.85\textwidth]{img/3-ter.pdf}
   \begin{columns}
-  \small
   \column{0.5\textwidth}
   \begin{itemize}
+  \small
   \item faire changements
   \item \lstinline|git add <files>|
   \end{itemize}
   \column{0.5\textwidth}
   \begin{itemize}
+  \small
   \item \lstinline|git commit|
   \end{itemize}
   \end{columns}
@@ -257,14 +264,15 @@
   \centering
   \includegraphics[width=0.85\textwidth]{img/3-quad.pdf}
   \begin{columns}
-  \small
   \column{0.5\textwidth}
   \begin{itemize}
+  \small
   \item faire changements
   \item \lstinline|git add <files>|
   \end{itemize}
   \column{0.5\textwidth}
   \begin{itemize}
+  \small
   \item \lstinline|git commit|
   \end{itemize}
   \end{columns}
@@ -273,13 +281,10 @@
 \begin{frame}{}
   \centering
   \includegraphics[width=0.85\textwidth]{img/4.pdf}
-  \begin{columns}
-  \small
-  \column{\textwidth}
   \begin{itemize}
-  \item \lstinline|git push origin b2|
+  \small
+  \item \lstinline|git push origin b2| \vspace{0.46cm} \\
   \end{itemize}
-  \end{columns}
 \end{frame}
 
 \begin{frame}{}
@@ -287,7 +292,7 @@
   \includegraphics[width=0.85\textwidth]{img/5.pdf}
   \begin{itemize}
   \small
-  \item \lstinline|git rebase master b1|
+  \item \lstinline|git rebase master b1| \vspace{0.46cm} \\
   \end{itemize}
 \end{frame}
 
@@ -296,7 +301,7 @@
   \includegraphics[width=0.85\textwidth]{img/6.pdf}
   \begin{itemize}
   \small
-  \item \lstinline|git push -f origin b1|
+  \item \lstinline|git push -f origin b1| \vspace{0.46cm} \\
   \end{itemize}
 \end{frame}
 
@@ -305,7 +310,7 @@
   \includegraphics[width=0.85\textwidth]{img/7.pdf}
   \begin{itemize}
   \small
-  \item \lstinline|git push origin b1:master|
+  \item \lstinline|git push origin b1:master| \vspace{0.46cm} \\
   \end{itemize}
 \end{frame}
 
@@ -313,14 +318,15 @@
   \centering
   \includegraphics[width=0.85\textwidth]{img/8.pdf}
   \begin{columns}
-  \small
   \column{0.5\textwidth}
   \begin{itemize}
+  \small
   \item \lstinline|git pull origin master|
   \item \lstinline|git branch -D b1|
   \end{itemize}
   \column{0.5\textwidth}
   \begin{itemize}
+  \small
   \item \lstinline|git push origin :b1|
   \end{itemize}
   \end{columns}
@@ -340,14 +346,15 @@
   \centering
   \includegraphics[width=0.85\textwidth]{img/10.pdf}
   \begin{columns}
-    \small
     \column{0.53\textwidth}
     \begin{itemize}
+    \small
     \item \lstinline|git push origin b2:master|
     \item \lstinline|git branch -D b2|
     \end{itemize}
     \column{0.47\textwidth}
     \begin{itemize}
+    \small
     \item \lstinline|git push origin :b2|
     \item \lstinline|git pull origin master|
     \end{itemize}

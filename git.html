@@ -1,0 +1,488 @@
+<html>
+  <head>
+    <meta http-equiv="content-language" content="fr" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Tutoriel GIT</title>
+    <style>
+      img { height: 300px; margin: 1em auto; }
+      pre { background : black; color : white; font-weight: bold;}
+    </style>
+  </head>
+  <body>
+    <p>
+      Dans un premier temps vous allez vouloir cloner votre
+      dépôt. Cela se fait avec la commande <code>git clone</code> qui
+      va créer une copie locale de votre dépôt distant. Ce dépôt local
+      va contenir <strong>tout</strong> l'historique de votre
+      projet. Si le dépôt distant venait à être perdu votre dépôt
+      local contiendrait toutes les informations nécessaires à sa
+      recréation à l'exception des commits faits après votre
+      dernier <code>clone</code> / <code>pull</code>
+      / <code>fetch</code>.  Git utilise par défaut le
+      protocole <em>ssh</em> donc, dans notre cas, nous n'avons rien
+      besoin d'ajouter avant le nom d'utilisateur (pas
+      de <code>http://</code>, <code>https://</code>, <code>git://</code>
+      ...) :
+
+      <pre>git clone elecinf381@hg.comelec.enst.fr:2011/Projet.git</pre>
+
+      Pour éviter toute confusion précisons que <code>2011</code>
+      n'est <emph>pas</emph> un numéro de port mais un répertoire sur
+      le serveur. Notez que vous ne clonez pas en tant que vous même
+      mais avec le nom d'utilisateur <code>elecinf381</code>. C'est
+      votre clé ssh qui vous identifie et vous permet de vous
+      connecter. Plus précisément, pour les gens qui se mélangent un
+      peu dans les clés, c'est <strong>la</strong> clé dont vous avez
+      transmis la partie publique aux enseignant. Pour que cela
+      fonctionne il faut donc que vous ayez cette clé sur l'ordinateur
+      duquel vous voulez cloner. Elle doit se trouver dans le
+      répertoire <code>~/.ssh/</code> sous la forme
+      de <strong>deux</strong> fichiers <code>id_Xsa.pub</code> (clé
+      publique) et <code>id_Xsa</code> (clé privée <strong>à ne jamais
+      transmettre à personne</strong>).  Votre clé privée est
+      elle-même chiffrée à l'aide d'un mot de passe que vous devez
+      entrer au moment du clone (sauf si vous avez un agent ssh). Vous
+      devez donc vous retrouver face à une invite semblable à :
+
+      <pre>Enter passphrase for key '~/.ssh/id_Xsa':</pre>
+
+      Si l'invite demande un mot de passe et non une passphrase :
+
+      <pre style='text-decoration:line-through'>Password:</pre>
+
+      c'est que votre clé n'a <em>pas</em> été trouvée ou que ce
+      n'est <em>pas</em> la clé que vous avez transmise aux
+      enseignants. Ne vous acharnez donc pas à entrer votre passphrase
+      ou votre mot de passe de l'école cela ne
+      marchera <strong>pas</strong>.
+
+    </p>
+
+    <div class="image">
+      <img src="img/2.png" alt="" />
+      <div class="caption">Figure 1 : Clonage d'un dépôt</div>
+    </p>
+
+    <p>
+      Regardons la figure 1. Nous remarquons que le dépôt local
+      contient exactement les mêmes commits que le dépôt distant. On
+      remarque qu'une branche <code>b1</code> est présente et a
+      divergé de <code>master</code> trois commits dans le
+      passé. Considérons que cette branche contient des commits
+      effectué par un collègue, Bob, et qui corrigent une erreur
+      connue dans le code source. Notons également l'apparition de
+      nouvelles branches <code>origin/...</code> ici représentées en
+      gris.  Ces branches sont des <em>copies locales des branches
+      distantes</em>. Ce concept un peu dur à appréhender vous semblera
+      très vite évident. Elles indiquent la position d'une branche sur
+      le serveur distant. Par exemple si vous faites évoluer votre
+      branche <code>master</code>, la
+      branche <code>origin/master</code> n'évolue pas et vous permet
+      ainsi savoir dans quel état est la branche sur le serveur avant
+      que vous ne pushiez. Une fois que vous pushez sur le serveur la
+      branche <code>origin/master</code> se déplace sur le même commit
+      que <code>master</code>.
+    </p>
+
+    <p>
+      Mais pourquoi <code>origin/...</code> ? Nous avons vu
+      précédemment que git est distribué. Cela implique que tout ne
+      passe pas par un seul serveur comme dans les gestionnaires de
+      version centralisés. Il vous est possible d'avoir plusieurs
+      serveurs distants sur lesquels vous pushez, mais vous pouvez
+      également puller des changements sur des dépôts de vos
+      collègues. Notez que pour pusher sur un dépôt il doit
+      être <em><a href="http://gitready.com/advanced/2009/02/01/push-to-only-bare-repositories.html">bare</a></em>;
+      vous ne pouvez donc pas pusher sur le dépôt d'un collègue sauf
+      si il vous a mis à disposition un dépôt <em>bare</em>. Git nomme
+      tous ces différents dépôts distants <em>remote</em>. Une remote
+      va donc se composer de l'adresse d'un dépôt et d'information sur
+      les branches à suivre et avec lesquelles se
+      synchroniser. Lorsque vous clonez git crée automatiquement une
+      remote spéciale appelée <code>origin</code> qui contient
+      l'adresse du dépôt que vous avez cloné. Si vous avez deux
+      remotes <code>origin</code> et <code>enst</code>, un dépôt que
+      vous avez à l'école par exemple, vous aurez donc pour une
+      branche locale <code>master</code> deux
+      branches <code>origin/master</code> et <code>enst/master</code>
+      qui décrivent l'état des branches sur ces deux remotes.
+    </p>
+
+    <p>
+      Essayons de créer une branche. Pour cela plaçons nous au sommet
+      de <code>master</code> :
+
+      <pre>git checkout master</pre>
+
+      Puis créons une nouvelle branche que l'on nomme <code>b2</code>
+      :
+      <pre>git branch b2</pre>
+
+      Enfin positionnons nous sur cette nouvelle branche :
+
+      <pre>git checkout b2</pre>
+
+      Se positionner sur une branche signifie que c'est cette branche
+      que le prochain commit déplacera. On remarque sur la figure 2
+      l'apparition de la branche <code>b2</code> au niveau
+      de <code>master</code>.
+    </p>
+
+    <div class="image">
+      <img src="img/3.png" alt="" />
+      <div class="caption">Figure 2 : Création d'une branche</div>
+    </div>
+
+    <p>
+      Mais pourquoi se placer au sommet de <code>master</code> ? Et
+      qu'est ce que <code>master</code> ? La
+      branche <code>master</code> est, comme son nom l'indique, la
+      branche principale de vos développements. Cette branche est
+      communément utilisée pour du code en production c'est à dire du
+      code qui compile et qui marche. Pourquoi ? Parce que c'est la
+      branche commune à tout le monde et la branche sur laquelle tout
+      le monde s'appuie. Il serait embêtant de devoir corriger les
+      erreurs de quelqu'un d'autre avant de commencer votre
+      travail. S'appuyer sur <code>master</code> est la garantie que
+      l'on part d'une base stable (à condition que tout le monde
+      respecte les règles du jeu) avant d'implémenter sa
+      fonctionnalité. On travaillera donc toujours en trois étapes :
+      travail dans une branche, vérifications et tests et enfin
+      intégration dans <code>master</code>.
+    </p>
+
+    <p>
+      C'est ce que nous allons faire ici. Notre
+      branche <code>b2</code> étant créée, nous allons faire des
+      modifications qui ajoutent une fonctionnalité à nos
+      développements :
+
+<pre>&lt;modifications&gt; ...
+git add &lt;files&gt;
+git commit</pre>
+
+      Les commits devant rester atomiques, supposons que l'on réitère
+      ces opérations trois fois pour ajouter notre fonctionnalité. La
+      figure 3 montre l'état du dépôt local après ces
+      modifications. Le dépôt distant reste pour l'instant inchangé
+      : <em>tous les changements sont locaux</em>.
+    </p>
+
+    <div class="image">
+      <img src="img/3-quad.png" alt="" />
+      <div class="caption">Figure 3 : Modifications</div>
+    </div>
+
+    <p>
+      Nous allons maintenant vouloir transférer nos modifications sur
+      le serveur. Qu'ils soient stables ou non, justifiés ou non,
+      importants ou non, nous vous conseillons de transférer
+      régulièrement vos changements sur le serveur. Cela vous
+      permettra avant tout d'avoir une sauvegarde en cas de problème
+      avec votre ordinateur (perte, vol, détérioration, mauvaise
+      manipulation, bug...). Cela permet également à vos collègues de
+      voir votre travail et de vous faire des remarques et des
+      suggestions. La figure 4 nous montre l'état des dépôts local et
+      distant après l'execution de la commande :
+
+      <pre>git push origin b2</pre>
+
+      Cette commande qui est un raccourci pour <code>git push origin
+      b2:b2</code> transfère au serveur tous les commits qu'il n'a pas
+      déjà puis déplace la branche distante <code>b2</code> sur le
+      commit pointé par la branche locale <code>b2</code>. Notons la
+      création d'une branche <code>origin/b2</code> dont vous avez
+      maintenant compris la sémantique et l'utilité.
+    </p>
+
+    <div class="image">
+      <img src="img/4.png" alt="" />
+      <div class="caption">Figure 4 : Mise à jour d'une branche distante</div>
+    </div>
+
+    <p>
+      Supposons à présent que Bob, qui est en week-end, vous appelle
+      et vous dise qu'il faut absolument que vous intégriez sa
+      branche <code>b1</code> dans <code>master</code> avant la votre
+      car Sally, une autre collègue, en a besoin rapidement. Ce
+      scénario qui semble tiré par les cheveux est en réalité très
+      courant.
+    </p>
+
+    <p>
+      Vous allez dans un premier temps laisser votre
+      branche <code>b2</code> de coté pour vous concentrer sur celle
+      de Bob : <code>b1</code>. Il ne serait pas judicieux (et
+      compliqué) d'intégrer les commits <code>baf</code>
+      et <code>cac</code> entre les commits <code>a3f</code>
+      et <code>1ed</code> de <code>master</code>. Cela modifierait
+      l'historique de <code>master</code> <strong>ce qu'il ne faut
+      jamais faire</strong>. En effet, si on faisait ça, les
+      commits <code>1ed</code> <code>f5a</code> <code>053</code>
+      devraient être réappliqués au dessus de <code>cac</code> et
+      changeraient donc d'identifiant <em>sha-1</em>. Cela signifie
+      que toutes les personnes qui auraient fait partir une branche
+      d'un de ces trois commits ne sont plus reliés à master de la
+      façon qu'ils pensent. Cela implique qu'ils auraient
+      potentiellement beaucoup d'opérations compliquées à faire alors
+      qu'ils ne sont pas responsables de ces changements. À éviter...
+    </p>
+
+    <p>
+      Dans ce cas on va préférer utiliser une opération
+      appelée <code>rebase</code>. Un rebase d'une branche sur une
+      autre permet de réappliquer les commits de la première au sommet
+      de la seconde. Le fait de réappliquer ces commits au dessus
+      d'autres qui contenaient de nouvelles modifications modifie leur
+      identifiant <em>sha-1</em>. La figure 5 présente l'état du dépôt
+      local après l'execution de la commande :
+
+      <pre>git rebase master b1</pre>
+
+      Ou si nous nous trouvions déjà sur <code>b1</code> :
+
+      <pre>git rebase master</pre>
+
+      Nous constatons que les branches <code>b1</code>
+      et <code>origin/b1</code> sont devenues deux branches totalement
+      différentes : différences des points de divergence avec master
+      et différence des identifiants des commits. La
+      branche <code>b1</code> est désormais au sommet de master et est
+      prête à y être intégrée, à condition que d'autres commits ne
+      soient pas pushés sur la branche <code>master</code> du serveur
+      entre temps. Dans ce cas il faudrait refaire
+      des <code>rebase</code> tant qu'il y a des nouveaux commits
+      sur <code>master</code>, cela arrive fréquemment sur des dépôts
+      où beaucoup de gens pushent.
+    </p>
+
+    <div class="image">
+      <img src="img/5.png" alt="" />
+      <div class="caption">Figure 5 : Rebaser une branche sur une autre</div>
+    </div>
+
+    <p>
+      Le <code>rebase</code> n'est néanmoins pas une opération
+      anodine. Les changements intervenus entre l'ancien et le nouveau
+      point de divergence peuvent entrer en conflits avec les
+      changements sur la branche. Git va donc pouvoir vous demander de
+      fusionner des fichiers quand il ne peut pas le faire lui
+      même. Dans ce cas le rebase s'arrête à l'endroit du conflit,
+      dans le même état que juste avant de faire le commit, et git
+      vous laisse faire <em>ce que vous voulez</em> pour corriger le
+      conflit. Vous pouvez faire absolument tout ce que vous voulez,
+      vous êtes dans le passé et vous faites ce que vous pouvez pour
+      que le présent soit possible. Vous pouvez par exemple utiliser
+      l'outil de fusion défini dans votre fichier de configuration en
+      exécutant la commande :
+
+      <pre>git mergetool</pre>
+
+      Une fois les changements et les fusions réalisées (plus
+      de <code>both modified</code> dans le <code>git status</code>)
+      vous continuez le rebase en exécutant :
+
+      <pre>git rebase --continue</pre>
+
+      Enfin si vous êtes en train de tout casser et que vous ne voyez
+      plus comment vous en sortir vous aimerez la possibilité
+      d'annuler le rebase en cours et de revenir dans le même état
+      (état du dépôt et pas seulement de la branche en cours) à l'aide
+      de la commande :
+
+      <pre>git rebase --abort</pre>
+
+    </p>
+
+    <p>
+      Pour pouvoir intégrer <code>b1</code> dans <code>master</code>
+      nous aurions également pu utiliser un <code>merge</code>. Nous
+      utilisons ici un rebase car il plus adapté à ce que nous voulons
+      faire. Il est pratique que l'historique de la
+      branche <code>master</code> reste linéaire, notamment pour
+      chercher l'apparition d'une erreur dans l'historique. Un merge
+      introduit un nouveau commit qui fusionne les deux branches et
+      qui a de ce fait deux parents. Il est moins aisé de remonter
+      dans l'histoire d'une branche si il y a plusieurs chemins
+      possibles. Par ailleurs en utilisant un rebase on efface de
+      l'historique le fait que la fonctionnalité ait été développée
+      sur une branche et le moment auquel cela a été fait. Dans la
+      plupart des cas cette information n'apporte rien, mais on peut
+      très bien vouloir la conserver et faire un merge.
+    </p>
+
+    <p>
+      Nous allons maintenant vouloir synchroniser la
+      branche <code>b1</code> du serveur avec la notre. Essayons
+      d'exécuter la commande suivante :
+
+      <pre>git push origin b1</pre>
+
+      Git affiche un message d'erreur de la forme :
+
+<pre>To elecinf381@hg.comelec.enst.fr:2011/Project.git
+! [rejected]        master -> master (non-fast forward)
+error: failed to push some refs to ‘elecinf381@hg.comelec.enst.fr:2011/Project.git’</pre>
+
+      Ce push est spécial, il transfère les nouveaux
+      commits <code>3a4</code> et <code>83d</code> sur le serveur puis
+      tente de déplacer le pointeur b1 sur du commit <code>cac</code>
+      vers le commit <code>83d</code>. Mais quid du
+      commit <code>cac</code> ? Il devient pendant
+      ou <em>dangling</em> puisque référencé par aucune branche. Cette
+      opération implique donc une perte d'historique. Dans la
+      terminologie git on appelle cela un push <em>non
+      fast-forward</em>. Il est possible de forcer git à faire des
+      push non fast-forward en utilisant <code>git push</code> avec
+      l'option <code>--force</code> ou <code>-f</code> pour spécifier
+      que l'on est <strong>conscient de</strong> et <strong>d'accord
+      avec</strong> une éventuelle perte d'historique. L'exécution de
+      la commande suivante :
+
+      <pre>git push -f origin b1</pre>
+
+      nous amène donc dans l'état illustré par la figure 6. L'ancienne
+      branche <code>b1</code> est perdue et <code>origin/b1</code>
+      pointe désormais sur <code>83d</code>.
+    </p>
+
+    <div class="image">
+      <img src="img/6.png" alt="" />
+      <div class="caption">Figure 6 : Synchronisation forcée (non fast-forward) avec du serveur</div>
+    </div>
+
+    <p>
+      Les push non fast-foward sont donc nécessaires mais doivent être
+      utilises avec certaines précautions. La première d'entre elles
+      est que pour les raisons citées plus haut <strong>personne ne
+      doit jamais faire un push non fast-forward sur la
+      branche <code>master</code></strong>. On ne détruit pas
+      l'historique sur lequel se sont appuyé les autres. Si un commit
+      de <code>master</code> est erroné on utilise <code>git revert
+      &lt;commit&gt;</code> qui introduit au sommet le commit
+      dual. Plus généralement on ne fait pas de push non fast-forward
+      sur des branches où l'on travaille à plusieurs, ou on s'assure
+      que les autres sont conscients que l'on va le faire.
+    </p>
+
+    <p>
+      Enfin on veut intégrer les changements de Bob
+      dans <code>master</code>. Pour cela plusieurs solutions. Nous
+      pouvons le faire en local et pusher sur le serveur :
+
+<pre>git checkout master
+git merge b1
+git push origin master
+</pre>
+
+      Ici, la branche <code>b1</code> étant au sommet de master aucun
+      commit n'est introduit par le merge et <code>master</code> est
+      simplement déplacée au sommet de <code>b1</code>. Cela s'appelle
+      un <em>merge fast-forward</em>. On déplace ensuite la
+      branche <code>b1</code> du serveur (ainsi
+      qu'<code>origin/b1</code>) au sommet de b1 à l'aide du <code>git
+      push origin master</code>.
+    </p>
+
+    <p>
+      On peut également faire évoluer la branche <code>master</code>
+      distante dans un premier temps puis récupérer les changements :
+
+<pre>git push origin b1:master
+git pull origin master</pre>
+
+       La première commande synchronise les commits avec le serveur
+       puis déplace la branche <code>master</code> distante au niveau
+       de la branche <code>b1</code> locale. La figure 7 présente
+       l'état des dépôts local et distant après cette opération. On
+       exécute ensuite la commande <code>git pull origin master</code>
+       pour mettre à jour la branche <code>master</code> locale avec
+       la distante. La figure 8 présente l'état des dépôts après
+       l'exécution de cette commande. Dans cette figure on a en plus
+       supprimé les branches <code>b1</code> locale et distante à
+       l'aide des commandes :
+
+<pre>
+  git branch -d b1
+  git push origin :b1
+</pre>
+    </p>
+
+
+    <p>
+      Dans les deux cas le push est fast-forward (pas besoin
+      d'utiliser l'option <code>-f</code>) puisque nous avons rebasé
+      notre branche sur <code>master</code>. On fait donc évoluer la
+      branche <code>master</code> de deux commits sans perdre
+      d'historique.
+    </p>
+
+    <div class="image">
+      <img src="img/7.png" alt="" />
+      <div class="caption">Figure 7 : Intégration des changements
+      de <code>b1</code> dans <code>master</code> sur le serveur</div>
+    </div>
+
+    <div class="image">
+      <img src="img/8.png" alt="" />
+      <div class="caption">Figure 8 : Suppression des branches et
+      synchronisation avec la branche <code>master</code>
+      distante</div>
+    </div>
+
+    <p>
+      Notre branche <code>b2</code> ayant été testée nous souhaitons
+      maintenant intégrer les changements
+      dans <code>master</code>. Problème : elle n'est plus au sommet
+      de <code>master</code>. De la même manière que précédemment nous
+      allons donc utiliser un rebase :
+
+<pre>git rebase master b2
+git push -f origin b2</pre>
+
+      Les commits de la branche <code>b2</code> sont réappliqués au
+      sommet de <code>master</code>. Et branche <code>b2</code>
+      distante est mise à jour à l'aide d'un push non fast-forward.
+    </p>
+
+    <div class="image">
+      <img src="img/9.png" alt="" />
+      <div class="caption">Figure 9 : Mise à jour de <code>b2</code> sur le dépôt distant</div>
+    </div>
+
+    <p>
+
+      Enfin on veut intégrer les changements de la
+      branche <code>b2</code> dans <code>master</code>. Pour cela on exécute les commandes :
+
+<pre>git push origin b2:master
+git branch -D b2
+git push origin :b2
+git pull origin master</pre>
+
+      La figure 10 montre une branche <code>master</code>,
+      synchronisée avec le dépôt distant, qui contient tous les
+      changements que l'on a voulu intégrer dans l'ordre que l'on a
+      choisi. L'historique est linéaire et tous les détails relatifs
+      aux branches sur lesquelles on a développé telle ou telle
+      fonctionnalité (ici considérés inutiles) en sont absents.
+    </p>
+
+    <div class="image">
+      <img src="img/10.png" alt="" />
+      <div class="caption">Figure 10 : Intégration de <code>b2</code>
+      dans <code>master</code></div>
+    </div>
+
+    <p>
+      Cet exemple décrit un mode de fonctionnement qui sera
+      continuellement répété tout au long du développement de votre
+      projet. Les différentes opérations décrites sont fondamentales
+      et nous espérons que vous en avez maintenant compris toutes les
+      subtilités car vous allez en avoir besoin très
+      prochainement. N'hésitez pas à nous poser des questions. Bon
+      courage !
+    </p>
+
+  </body>
+</html>

@@ -1,0 +1,200 @@
+  <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+  <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" >
+    <head>
+      <title>Gestion de branches</title>
+      <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+      <style>
+	pre { background : black; color : white; font-weight: bold;}
+      </style>
+
+    </head>
+    <body>
+
+
+      <h2>III - Gestion de branches</h2>
+
+      <h3> 1 - Gestion locale des branches</h3>
+ 
+     <p>Au sein d'un dépôt, les commits sont organisés sous la forme d'un arbre.
+       On peut voir sur le schéma suivant que chaque commit est identifié par un
+       numéro unique : le <a href="http://en.wikipedia.org/wiki/Sha1">sha1</a> 
+       (le risque de collisions étant très faible).
+       On remarque aussi que chaque commit 
+       pointe vers le commit précédent. De plus le commit f30ad a deux fils : 
+       c2b9e et 87ab2. Il y a un embranchement, les deux branches étant master et
+       testing.</p>
+
+      <p><img src="img/Branch1.png" alt="Branches" />
+	<br />Source : <a href="http://progit.org/book">Progit</a></p>
+
+      <p>Une branche n'est rien plus qu'un pointeur vers un commit. Un autre 
+	pointeur est HEAD qui pointe vers le commit sur lequel on est en train 
+	de travailler (le pointeur est sauvegardé dans le fichier .git/HEAD). La 
+	branche master est particulière, c'est la branche principale, de 
+	production, elle n'est censée contenir que du code fonctionnel.
+	Les branches sont très utiles. En effet, elles permettent de faire du 
+	développement en parallèle. Supposons qu'on veuille ajouter une 
+	fonctionnalité sans perturber l'avancée de master (par d'autre ou par 
+	nous-même). Il suffit pour cela de travailler dans une autre branche <em>br1</em>.
+	On pourra à tout moment revenir dans master sans être gêné par les 
+	modifications faites dans <em>br1</em>.</p>
+
+      <p>Voici quelques commandes pour créer des branches et se déplacer entre elles :
+	<ul> 
+	  <li>Pour créer une branche au niveau du commit courant :<br />
+	    <pre>git branch [name] </pre></li>
+
+	  <li>Pour en supprimer une :<br />
+	    <pre>git branch -d [name] </pre></li>
+
+	  <li>Pour lister les branches (le * dans le listing correspond à la branche courante) :
+	    <ul> 
+	      <li>branches locales :<br />
+		<pre>git branch</pre></li>
+	      <li>branches distantes :<br />
+		<pre>git branch -r</pre></li>
+	      <li>branches mergées (cf partie 3) à la branche courante :<br />
+		<pre>git branch --merged</pre></li>
+	      <li>branches non mergées à la branche courante :<br />
+		<pre>git branch --unmerged</pre></li>
+	    </ul>
+
+	  <li>Pour voir le dernier commit de chaque branche :<br />
+	    <pre>git branch -v</pre></li>
+
+	  <li>Pour se déplacer sur un commit/une branche :<br />
+	    <pre>git checkout [commit/branch]</pre></li>
+
+	  <li>Pour créer une branche et la rendre active en même temps :<br />
+	    <pre>git checkout -b [name]</pre></li>
+      </ul></p>
+
+       <h3>2 - Interactions avec un dépôt distant</h3>
+
+	<p>Pour partager son travail et se protéger de toutes pertes de données 
+	  qui pourraient advenir, il faut envoyer fréquemment ses commits sur un 
+	  serveur distant (dans notre cas <code>hg.comelec.enst.fr</code>). Pour cela 
+	  plusieurs commandes :
+	  <ul>
+	    <li><pre>git fetch</pre> <br />
+	      Permet de se synchroniser avec le serveur 
+	      <strong>sans changer l'état courant</strong>. <br />
+	      On reçoit l'ensemble des nouveaux commits et une copie locale des
+	      branches distantes (leur nom est préfixé par le nom du serveur, en
+	      général origin/)</li>
+
+	    <li><pre>git push [remotename] [branch]:[remotebranch]</pre><br />
+	      Envoie au serveur [remotename] les nouveaux commits de [branch] et
+	      met à jour le pointeur [remotebranch] au niveau de [branch]</li>
+
+	    <li><pre>git push [remotename] [branch]</pre><br />
+	      Équivalent de :<br />
+	      <pre>git push [remotename] [branch]:[branch]</pre></li>
+
+	    <li><pre>git push [remotename] :[remotebranch]</pre><br />
+	      Supprime la branche distante</li>
+	  </ul>
+	</p>
+      <p>
+       Pour tracker une branche, c'est-à-dire qu'elle soit associée à une branche
+       distante, plusieurs moyens :
+       <ul>
+       <li><pre>git push -u [remotename] [branch]:[remotebranch]</pre></li>
+       <li><pre>git checkout -b [branch] [remotename]/[branch]</pre></li>
+       <li><pre>git checkout --track [remotename]/[branch]</pre></li>
+       </ul>
+       On peut alors utiliser push et pull(voir plus loin) sans argument sur ces 
+       branches.
+      </p>
+
+      <h3>3. Merge</h3>
+
+      <p>Une fois que l'on a terminé de travailler sur une branche, on peut 
+	vouloir la fusionner avec une autre (master par exemple). </p>
+
+      <p><img src="img/Merge.png" alt="Merge" />
+	<br />Source : <a href="http://progit.org/book">Progit</a></p>
+
+      <p> Dans l'exemple ci-dessus, une branche iss53 a été créée en C2, puis
+	deux commits (C3 et C4) y ont été fait. En parallèle un nouveau commit 
+	(C4) a été fait dans master. On veut appliquer les modifications de iss53
+	sur master en mergant cette branche. Il en résulte un commit (C6) ayant 
+	deux parents.</p>
+      
+      <p> La procédure pour faire un merge est la suivante :
+	<ul>
+	  <li>Se déplacer dans la branch où merger :<br />
+	    <pre>git checkout [branch1]</pre></li>
+	  <li>Merger :<br />
+	    <pre>git merge [branch2]</pre></li>
+	  </ul>
+      <p>Il peut y avoir un <em>merge conflict</em> si git n'arrive pas à 
+	fusionner un ou plusieurs fichiers. Cela arrive s'ils ont été 
+	modifiés aux mêmes lignes dans les deux branches. Dans ce cas-là :
+	<ul>
+	    <li> Faire un <pre>git status</pre> pour voir les problèmes</li>
+	     <li> Les résoudre par exemple avec <pre>git mergetool</pre> qui 
+	       utilise le logiciel configuré avec 
+	       <pre>git config --global merge.tool [software]</pre>.<br />
+	       Git ajoute des balises pour délimiter les problèmes :<br />
+	       <code><<<<<<< [branch1]:[filename]<br />
+	       [ligne(s) version 1]<br />
+	       =======<br />
+	       [ligne(s) version 2]<br />
+	       >>>>>>>> [branch2]:[filename]</code></li>
+	     <li> Il ne reste plus qu'à faire un commit</li>
+	</ul>
+      </p>
+
+      <p> Dans les deux cas, avant de faire un commit et de pusher, il ne faut 
+	pas oublier de tester le code résultant du merge.</p>
+
+      <p> Notez aussi la commande 
+	<pre>git pull [remotename] [branch]:[branch]</pre> 
+	qui fetch et ensuite merge la branche.</p>
+
+
+      <h3> 4. Rebase</h3>
+      
+      <p> Une autre façon de fusionner des branches est le rebase, détaillé dans 
+	l'<a href="git.html">exemple</a> suivant. Cela consiste à appliquer les 
+	modifications d'une branche, commit par commit, au sommet d'une autre :
+      </p>
+
+      <p>
+	Supposons que l'on ait une branche experiment et qu'on veuille la 
+	fusionner avec master : <br />
+	<img src="img/Rebase0.png" alt="Original" /><br />
+	Un merge donnerait cela :<br />
+	<img src="img/Reb_merge.png" alt="Merge" /><br />
+	Avec un rebase on crée un nouveau commit C3' au sommet de master 
+	contenant les mêmes modifications que C3<br />
+	<img src="img/Rebase.png" alt="Rebase" /><br />
+	Il suffit ensuite de faire un fastforward de master <br />
+	<img src="img/Rebased.png" alt="Rebased" /><br />
+      	Source : <a href="http://progit.org/book">Progit</a>
+      </p>
+      
+      <p> Les commandes pour réaliser cela sont :
+	<ul>
+	  <li><pre>git rebase [branch]</pre> rebase la branche courante sur 
+	    branch</li>
+	  <li><pre>git rebase [--onto][branch1] [branch2]</pre> rebase branch2
+	    sur branch1</li>
+	  <li>On utilise ensuite la commande merge dans branch pour faire un
+	    fastforward<br />
+	    <pre>git checkout [branch1] && git merge [branch2]</pre></li>
+	</ul>
+      </p>
+      <p> Il peut y avoir avoir des conflits comme pour un merge. Après les avoir
+	résolus avec <pre>git mergetool</pre> faire un 
+	<pre>git rebase --continue</pre>
+	<br /><pre>git rebase --abort</pre> permet d'annuler un rebase en cours.
+      </p>
+
+      <p>Attention à ne pas faire de rebase d'une branche d'où part d'autres 
+	branches ou sur laquelle d'autres personnes travaillent. Cela rendrait 
+	difficile les merges/rebases futurs.</p>
+      <p> <pre>git pull --rebase</pre> fait un rebase à la place d'un merge.</p>
+    </body>
+  </html>

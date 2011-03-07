@@ -5,11 +5,15 @@
     <title>Tutoriel GIT</title>
     <style>
       img { height: 300px; margin: 1em auto; }
-      pre { background : black; color : white; font-weight: bold;}
+      pre { background: black; color: white; font-weight: bold;}
+      .image { text-align: center; }
+      .caption { font-style: italic; font-size: 0.7em; }
     </style>
   </head>
   <body>
 
+    <h1>Tutoriel GIT</h1>
+    <strong>Auteurs : </strong>Bertrand, Clément, Laurent et Vaibhav.
 
     <h2>Table des matières</h2>
     <ul>
@@ -22,89 +26,91 @@
 
 
     <h2 id="part1">I. Introduction</h2>
-    <h3 id="objectifs">Objectifs de la présentation</h3>
-     la fin de la présentation vous
+    <h3 id="objectifs">Objectifs du tutoriel</h3>
+     À la fin de ce tutoriel vous :
     <ul>
       <li>Saurez ce que sont les systèmes de gestions de versions (Concurrent Version System en anglais)</li>
       <li>Pourrez installer et configurer le système de gestion de version Git</li>
-      <li>Connaitrez les commandes de bases pour une utilisation quotidienne de Git</li>
+      <li>Connaîtrez les commandes de bases pour une utilisation quotidienne de Git</li>
       <li>Aurez la possibilité de travailler de manière flexible à l'aide des branches</li>
       <li>Ne serez pas perdu avec la cheat sheet et les pointeurs que nous vous fournissons</li>
     </ul>
     <h3 id="vocabulaire">Systèmes de gestions de versions : vocabulaire</h3>
     <p>Un logiciel de gestion de versions (VCS en anglais) permet de stocker les
-      différentes versions d'un ensemble de fichiers afin de faciliter 
+      différentes versions d'un ensemble de fichiers afin de faciliter
       l'évolutivité d'une production informatique.
       Par la suite nous utiliserons l'abréviation VCS pour désigner les logiciels
       de gestions de versions.
-      Certains termes sont spécifiques au monde des VCS ou à GIT et il est 
+      Certains termes sont spécifiques au monde des VCS ou à GIT et il est
       important de bien les comprendre pour pouvoir travailler efficacement :
     </p>
     <h4 >Commit et branche</h4>
-    <p>Le mot commit désigne à la fois la création d'une nouvelle version 
-      (lorsque c'est un verbe) et cette nouvelle version (lorsque c'est un nom). 
-      "Je commit" veut dire, j'entérine les changements que j'ai effectué et ils 
-      constituent une version. "Le deuxième commit de mon projet", désigne sa 
+    <p>Le mot commit désigne à la fois la création d'une nouvelle version
+      (lorsque c'est un verbe) et cette nouvelle version (lorsque c'est un nom).
+      "Je commit" veut dire, j'entérine les changements que j'ai effectué et ils
+      constituent une version. "Le deuxième commit de mon projet", désigne sa
       deuxième version. Les commits sont organisés en arbre et la figure suivante
       en donne un exemple :</p>
-    
-    <img src="./img/arbre1.png" style="margin:30px"/>
-    Source : progit.org
-    
-    <p>C0...C5 désignent des versions. Les flèches représentent des liens de 
-      parentés, entendons par là que C1 a été créé à partir de C0, C1 est 
+
+    <div class="image">
+      <img src="./img/arbre1.png" style="margin:30px"/>
+      <div class="caption">Source : <a href="http://progit.org/book">Progit</a></div>
+    </div>
+
+    <p>C0...C5 désignent des versions. Les flèches représentent des liens de
+      parentés, entendons par là que C1 a été créé à partir de C0, C1 est
       postérieur à C0.
       Au niveau de C2 le développement s'est divisé en deux branches : master et
-      iss53. Ces branches correspondent à la notion intuitive d'une branche d'un 
+      iss53. Ces branches correspondent à la notion intuitive d'une branche d'un
       arbre par exemple: la branche master va de C0
-      à C4. Ne prenez pas garde à la notation adoptée pour les branches, elle 
+      à C4. Ne prenez pas garde à la notation adoptée pour les branches, elle
       sera expliquée par la suite.</p>
-    
-    <h4>Dépot (Repository)</h4> 
+
+    <h4>Dépôt (Repository)</h4>
     <p>Désigne l'ensemble des fichiers conservés par le système de gestion de version.</p>
-    
-    <h4>Remote </h4> 
-    <p>Désigne un dépot distant (par opposition à un dépot local).</p>
-    
+
+    <h4>Remote </h4>
+    <p>Désigne un dépôt distant (par opposition à un dépôt local).</p>
+
     <h3 id="architecture">Systèmes de gestions de versions : architecture</h3>
     Le système de gestion de versions se déclinent en trois types :
     <ul>
       <li><strong>Local</strong> : le dépôt se situe uniquement sur la machine de
 	l'utilisateur</li>
-      <li><strong>Centralisé</strong> : les informations se situent sur un 
-	serveur central. L'information y est principalement située et le ou les 
+      <li><strong>Centralisé</strong> : les informations se situent sur un
+	serveur central. L'information y est principalement située et le ou les
 	utilisateurs doivent s'y connecter pour travailler</li>
-      <li><strong>Distribué</strong> : les informations sont stockées sur un 
-	ensemble de machines de manière distribuée. On peut reconstituer le 
-	contenu du projet à partir de n'importe quelle machine, il n'y a pas un 
-	point de faiblesse comme dans le cas de l'architecture centralisée.</li>      
+      <li><strong>Distribué</strong> : les informations sont stockées sur un
+	ensemble de machines de manière distribuée. On peut reconstituer le
+	contenu du projet à partir de n'importe quelle machine, il n'y a pas un
+	point de faiblesse comme dans le cas de l'architecture centralisée.</li>
     </ul>
-    A partir de maintenant nous nous intéresserons à Git qui est un système de 
+    A partir de maintenant nous nous intéresserons à Git qui est un système de
     gestion de versions distribué.
 
     <h3 id="git">Git : aperçu des possibilités</h3>
-    
-    Vous commencez certainement à deviner le fonctionnement des système de 
-    gestion de version, voici une partie des avantages qu'apporte Git aux 
+
+    Vous commencez certainement à deviner le fonctionnement des système de
+    gestion de version, voici une partie des avantages qu'apporte Git aux
     développeurs :
     <ul>
       <li>Possibilité de revenir en arrière dans le développement</li>
       <li>Possibilité de travailler en parallèle</li>
-      <li>Possibilité de travailler uniquement en local(par exemple sans 
+      <li>Possibilité de travailler uniquement en local(par exemple sans
 	internet) et de transmettre toutes les informations dans un second temps
       </li>
-      <li>Possibilité de débugger automatiquement pour localiser l'introduction 
+      <li>Possibilité de débugger automatiquement pour localiser l'introduction
 	d'un bug parmi l'arbre des commits</li>
       <li>...</li>
     </ul>
-    
+
     <h3 id="installer">Installer Git</h3>
-    Sous ubuntu ou debian il vous suffit d'installer le paquet git pour pouvoir 
+    Sous ubuntu ou debian il vous suffit d'installer le paquet git pour pouvoir
     disposer de toutes les fonctionnalités du logiciel.
     <pre>sudo aptitude install git</pre>
     Sous mac os X 10.6 git est déjà présent de base dans le système.
     <h3 id="configurer">Configurer Git</h3>
-    Git se configure soit en ligne de commande, soit directement dans un fichier 
+    Git se configure soit en ligne de commande, soit directement dans un fichier
     de config qui se trouve dans votre home : .gitconfig.
     En voici un exemple :
     <pre>
@@ -113,39 +119,42 @@
       email = laurent.charignon@telecom-paristech.fr
       [core]
       editor = vim
-      
+
       [alias]
       co = checkout
       br = branch
       st = status
       a  = add</pre>
-    
-    
+
+
     Ici il faut comprendre que mon nom et mon email sont spécifiés, que j'utilise
     vim et que j'utilise des alias pour quatre commandes.
-    Pour modifier ce fichier par le biais de la ligne de commande on utilise la 
+    Pour modifier ce fichier par le biais de la ligne de commande on utilise la
     commande git config avec la syntaxe suivante :
     <pre>git config --global catégorie.champ valeur</pre>
     par exemple :
     <pre>git config --global user.name "Laurent Charignon"</pre>
-    L'option --global permet de faire que le choix s'applique à tous les projets 
-    que l'on utilise. Si vous voulez faire des configurations spécifiques à un 
+    L'option --global permet de faire que le choix s'applique à tous les projets
+    que l'on utilise. Si vous voulez faire des configurations spécifiques à un
     projet vous pouvez retirer cette option.
-    <code>man git config</code> fournit une liste de toutes les options 
+    <code>man git config</code> fournit une liste de toutes les options
     configurables avec la syntaxe mentionnée ci-dessus.
-    
+
     <h3 id="gui">Interface graphique pour visualiser les branches</h3>
-    <p>Vous pouvez utiliser différentes interfaces graphiques pour visualiser 
+    <p>Vous pouvez utiliser différentes interfaces graphiques pour visualiser
       l'arbre des commits. En voici deux exemples :
     </p>
-    <p>gitk et son interface Tk :</p>
-    <img src="./img/gitk.png"  style="height:100%"  />
-    
-    <p>qgit et son interface Qt :</p>
-    
-    <img src="./img/qgit.png" style="height:100%" />
 
-    
+    <div class="image">
+      <img src="./img/gitk.png"  style="height:100%"  />
+      <div class="caption">Gitk et son interface Tk</div>
+    </div>
+
+    <div class="image">
+      <img src="./img/qgit.png" style="height:100%" />
+      <div class="caption">Qgit et son interface Qt</div>
+    </div>
+
     <h2 id="part2">II. Commandes de base</h2>
     <h3>Commande <code>git clone</code></h3>
 
@@ -157,7 +166,7 @@
     <pre>git clone &lt;URL&gt;</pre>
 
     <p> par exemple : <code>git clone elecinf381@hg.comelec.enst.fr:2011/PrenomNom.git</code>
-      Notre machine contient une copie du dépot distant. Maintenant, si nous
+      Notre machine contient une copie du dépôt distant. Maintenant, si nous
       voulons ajouter un nouveau fichier à notre projet, nous créons le
       fichier, par exemple <code>EthernetDriver.c</code>, mais git ne sait
       rien sur ce fichier. L'état actuel du fichier est dit
@@ -191,7 +200,7 @@
       commande <code>git add &lt;file&gt;</code> Après cela, git commencera
       le suivi de ce fichier et le statut de ce fichier passera de
       <em>untracked</em> à <em>tracked</em>.  Lors d'un changement du
-      contenu de ce fichier git detecte ce changement et le fichier passe
+      contenu de ce fichier git détecte ce changement et le fichier passe
       dans l'état <em>modified</em> Après avoir fait tous les changements,
       nous devons tester nos modifications et une fois satisfaits nous
       pouvons procéder à l'enregistrement de ces changements. C'est ce que
@@ -203,8 +212,8 @@
       modifications effectuées sur les fichiers déjà suivis par git.
     </p>
     <p>
-      Un <em>snapshot</em> est fait au moment du <code>add</code>. C'est ce 
-      <em>snapshot</em> qui sera commité. <strong>Les modifications 
+      Un <em>snapshot</em> est fait au moment du <code>add</code>. C'est ce
+      <em>snapshot</em> qui sera commité. <strong>Les modifications
       intermédiaires ne seront pas commitées</strong>. Pour qu'elles le soit, il
       suffit de refaire un <code>add</code>.
     </p>
@@ -255,19 +264,83 @@
 
     <h3>Commande <code>git grep</code></h3>
     <p>
-      Pour faire un <code>grep</code> dans les fichiers trackés.
+      Cette commande permet de rechercher du texte dans les fichiers
+      trackés par git. Cela est plus rapide et plus efficace
+      qu'un <code>grep</code> standard qui va rechercher dans tous les
+      fichiers temporaires, fichiers objets, exécutables...
     </p>
 
     <h3>Commande <code>git revert</code></h3>
     <p>
+      Cette commande permet d'insérer au sommet de la branche courante
+      le dual d'un commit. Cela est particulièrement utile dans les
+      branches telles que <code>master</code> dans laquelle on ne peut
+      pas se permettre d'avoir une perte d'historique. Par exemple si
+      nous sommes dans la situation suivante :
+
+<pre>commit 67d9dfa351f642159480b306f1004c158a283e92
+Author: John Doe <doe@enst.fr>
+Date:   Mon Mar 7 21:52:24 2011 +0100
+
+    Fix issue #1344.
+
+commit dc7767340c492fd93b55955a28572c98636a10f7
+Author: John Doe <doe@enst.fr>
+Date:   Mon Mar 7 21:38:06 2011 +0100
+
+    Add feature #755.
+
+commit b12caf55ad9c254b1997435031da49a5a05f902b
+Author: John Doe <doe@enst.fr>
+Date:   Mon Mar 7 21:27:09 2011 +0100
+
+    Add feature #740.</pre>
+
+       Notre collègue John Doe a introduit des erreurs dans son commit
+       ajoutant la fonctionnalité 740. Ce commit étant sur la branche
+       master nous ne pouvons pas l'en enlever. Nous allons donc
+       exécuter la commande :
+
+<pre>git revert b12caf55</pre>
+
+      Cela va appliquer le diff inverse de celui du
+      commit <code>b12caf55</code> annulant ainsi tous les changements
+      faits dans ce commit. Git va faire cela de manière autonome, à
+      condition que les commits <code>dc776734</code>
+      et <code>67d9dfa3</code> ne modifient pas les mêmes parties des
+      fichiers. Dans ce cas il faudra les fusionner manuellement.
+
     </p>
 
     <h3>Commande <code>git reset</code></h3>
     <p>
+      Cette commande permet de déplacer le pointeur <code>HEAD</code>
+      et la branche courante vers un commit arbitraire. Il existe
+      néanmoins plusieurs variantes :
+      <pre>git reset --hard &lt;commit&gt;</pre>
+      L'option <code>--hard</code> provoque la perte de tous les
+      changements actuels et remet la branche courante à l'état du
+      commit donné en paramètre.
+      <pre>git reset --soft &lt;commit&gt;</pre>
+      L'option <code>--soft</code> remet la branche courante à l'état
+      du commit donné en paramètre mais laisse les différence entre ce
+      commit et HEAD (avant le <code>reset</code>) dans la <em>staging
+      area</em>. Il sont ainsi prêts à être enregistrés dans un autre
+      commit.
     </p>
 
     <h3>Commande <code>git bisect</code></h3>
     <p>
+      Cette commande très utile permet de chercher par dichotomie le
+      commit qui aurait introduit un dysfonctionnement. Si le code
+      versionné ne fonctionne plus, que l'on est capable de donner un
+      commit pour lequel le code marchait et que l'on peut formuler un
+      test permettant de savoir si le code fonctionne alors
+      <code>git bisect</code> trouvera en un temps optimal le commit
+      responsable. Cette <a href="http://book.git-scm.com/5_finding_issues_-_git_bisect.html">page</a>
+      du <a href="http://book.git-scm.com/index.html">Git Community
+      Book</a> explique en détail l'utilisation de <code>git
+      bisect</code>.
     </p>
 
 
@@ -283,8 +356,10 @@
       c2b9e et 87ab2. Il y a un embranchement, les deux branches étant master et
       testing.</p>
 
-    <p><img src="img/Branch1.png" alt="Branches" />
-      <br />Source : <a href="http://progit.org/book">Progit</a></p>
+    <div class="image">
+      <img src="img/Branch1.png" alt="Branches"/>
+      <div class="caption">Source : <a href="http://progit.org/book">Progit</a></div>
+    </div>
 
     <p>Une branche n'est rien plus qu'un pointeur vers un commit. Un autre
       pointeur est HEAD qui pointe vers le commit sur lequel on est en train
@@ -294,7 +369,7 @@
       Les branches sont très utiles. En effet, elles permettent de faire du
       développement en parallèle. Supposons qu'on veuille ajouter une
       fonctionnalité sans perturber l'avancée de master (par d'autre ou par
-      nous-même). Il suffit pour cela de travailler dans une autre branche <em>br1</em>.
+      nous-mêmes). Il suffit pour cela de travailler dans une autre branche <em>br1</em>.
       On pourra à tout moment revenir dans master sans être gêné par les
       modifications faites dans <em>br1</em>.</p>
 
@@ -371,13 +446,15 @@
     <p>Une fois que l'on a terminé de travailler sur une branche, on peut
       vouloir la fusionner avec une autre (master par exemple). </p>
 
-    <p><img src="img/Merge.png" alt="Merge" />
-      <br />Source : <a href="http://progit.org/book">Progit</a></p>
+    <div class="image">
+      <img src="img/Merge.png" alt="Merge"/>
+      <div class="caption">Source : <a href="http://progit.org/book">Progit</a></div>
+    </div>
 
     <p> Dans l'exemple ci-dessus, une branche iss53 a été créée en C2, puis
       deux commits (C3 et C4) y ont été fait. En parallèle un nouveau commit
       (C4) a été fait dans master. On veut appliquer les modifications de iss53
-      sur master en mergant cette branche. Il en résulte un commit (C6) ayant
+      sur master en mergeant cette branche. Il en résulte un commit (C6) ayant
       deux parents.</p>
 
     <p> La procédure pour faire un merge est la suivante :
@@ -422,17 +499,28 @@
 
     <p>
       Supposons que l'on ait une branche experiment et qu'on veuille la
-      fusionner avec master : <br />
-      <img src="img/Rebase0.png" alt="Original" /><br />
-      Un merge donnerait cela :<br />
-      <img src="img/Reb_merge.png" alt="Merge" /><br />
+      fusionner avec master :
+      <div class="image">
+        <img src="img/Rebase0.png" alt="Original" />
+        <div class="caption">Source : <a href="http://progit.org/book">Progit</a></div>
+      </div>
+      Un merge donnerait cela :
+      <div class="image">
+        <img src="img/Reb_merge.png" alt="Merge" />
+        <div class="caption">Source : <a href="http://progit.org/book">Progit</a></div>
+      </div>
       Avec un rebase on crée un nouveau commit C3' au sommet de master
-      contenant les mêmes modifications que C3<br />
-      <img src="img/Rebase.png" alt="Rebase" /><br />
-      Il suffit ensuite de faire un fastforward de master <br />
-      <img src="img/Rebased.png" alt="Rebased" /><br />
-      Source : <a href="http://progit.org/book">Progit</a>
-      </p>
+      contenant les mêmes modifications que C3 :
+      <div class="image">
+        <img src="img/Rebase.png" alt="Rebase" />
+        <div class="caption">Source : <a href="http://progit.org/book">Progit</a></div>
+      </div>
+      Il suffit ensuite de faire un fastforward de master :
+      <div class="image">
+        <img src="img/Rebased.png" alt="Rebased" />
+        <div class="caption">Source : <a href="http://progit.org/book">Progit</a></div>
+      </div>
+    </p>
 
     <p> Les commandes pour réaliser cela sont :
       <ul>
@@ -507,7 +595,7 @@
     </p>
 
     <div class="image">
-      <img src="img/2.png" alt="" />
+      <img src="img/2.png" alt="Clonage d'un dépôt" />
       <div class="caption">Figure 1 : Clonage d'un dépôt</div>
     </div>
 
@@ -577,7 +665,7 @@
     </p>
 
     <div class="image">
-      <img src="img/3.png" alt="" />
+      <img src="img/3.png" alt="Création d'une branche" />
       <div class="caption">Figure 2 : Création d'une branche</div>
     </div>
 
@@ -617,7 +705,7 @@
     </p>
 
     <div class="image">
-      <img src="img/3-quad.png" alt="" />
+      <img src="img/3-quad.png" alt="Modifications" />
       <div class="caption">Figure 3 : Modifications</div>
     </div>
 
@@ -644,7 +732,7 @@
     </p>
 
     <div class="image">
-      <img src="img/4.png" alt="" />
+      <img src="img/4.png" alt="Mise à jour d'une branche distante" />
       <div class="caption">Figure 4 : Mise à jour d'une branche distante</div>
     </div>
 
@@ -705,7 +793,7 @@
     </p>
 
     <div class="image">
-      <img src="img/5.png" alt="" />
+      <img src="img/5.png" alt="Rebaser une branche sur une autre" />
       <div class="caption">Figure 5 : Rebaser une branche sur une autre</div>
     </div>
 
@@ -795,7 +883,7 @@
     </p>
 
     <div class="image">
-      <img src="img/6.png" alt="" />
+      <img src="img/6.png" alt="Synchronisation forcée (non fast-forward) avec du serveur" />
       <div class="caption">Figure 6 : Synchronisation forcée (non fast-forward) avec du serveur</div>
     </div>
 
@@ -866,13 +954,13 @@
     </p>
 
     <div class="image">
-      <img src="img/7.png" alt="" />
+      <img src="img/7.png" alt="Intégration des changements de b1 dans master sur le serveur" />
       <div class="caption">Figure 7 : Intégration des changements
         de <code>b1</code> dans <code>master</code> sur le serveur</div>
     </div>
 
     <div class="image">
-      <img src="img/8.png" alt="" />
+      <img src="img/8.png" alt="Suppression des branches et synchronisation avec la branche master distante" />
       <div class="caption">Figure 8 : Suppression des branches et
         synchronisation avec la branche <code>master</code>
         distante</div>
@@ -894,7 +982,7 @@
     </p>
 
     <div class="image">
-      <img src="img/9.png" alt="" />
+      <img src="img/9.png" alt="Mise à jour de b2 sur le dépôt distant" />
       <div class="caption">Figure 9 : Mise à jour de <code>b2</code> sur le dépôt distant</div>
     </div>
 
@@ -917,7 +1005,7 @@
     </p>
 
     <div class="image">
-      <img src="img/10.png" alt="" />
+      <img src="img/10.png" alt="Intégration de b2 dans master" />
       <div class="caption">Figure 10 : Intégration de <code>b2</code>
         dans <code>master</code></div>
     </div>

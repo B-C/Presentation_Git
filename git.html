@@ -202,20 +202,26 @@
       commande <code>git add -u</code> qui tient compte de toutes les
       modifications effectuées sur les fichiers déjà suivis par git.
     </p>
+    <p>
+      Un <em>snapshot</em> est fait au moment du <code>add</code>. C'est ce 
+      <em>snapshot</em> qui sera commité. <strong>Les modifications 
+      intermédiaires ne seront pas commitées</strong>. Pour qu'elles le soit, il
+      suffit de refaire un <code>add</code>.
+    </p>
 
     <h3>Commande <code>git rm</code></h3>
 
     <p>
       Pour arrêter de suivre un fichier nous utilisons la commande
-      <code>git rm</code> suivi du nom d'un fichier.
+      <code>git rm</code> suivi du nom d'un fichier.<br />
+      Pour enlever un fichier de la <em>staging area</em>, utiliser :
+      <code>git rm --cached</code> suivi du nom d'un fichier.
     </p>
 
 
     <h3>Commande <code>git commit</code></h3>
 
-
     <p>
-
       <pre>git commit</pre> permet d'enregistrer les changements en
       <em>staging area</em> dans le dépôt.  Seuls les changements se
       trouvant dans la <em>staging area</em> feront partie du prochain

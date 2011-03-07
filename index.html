@@ -1,19 +1,15 @@
-
 <html>
   <head>
     <meta http-equiv="content-language" content="fr" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Tutoriel GIT</title>
     <style>
-      img { height: 300px; margin: 1em auto; }
-      pre { background : black; color : white; font-weight: bold;}
-	  code { display:block;background : black; color : white; font-weight: bold;}
     </style>
   </head>
   <body>
 	<h2>I - Introduction</h2>
 	<h3 id="objectifs">Objectifs de la présentation</h3>
-				A la fin de la présentation vous 
+				A la fin de la présentation vous
 				<ul>
 				  <li>Saurez ce que sont les systèmes de gestions de versions (Concurrent Version System en anglais)</li>
 				  <li>Pourrez installer et configurer le système de gestion de version Git</li>
@@ -22,20 +18,20 @@
 				  <li>Ne serez pas perdu avec la cheat sheet et les pointeurs que nous vous fournissons</li>
 				</ul>
 			  <h3 id="vocabulaire">Systèmes de gestions de versions : vocabulaire</h3>
-			  <p>Un logiciel de gestion de versions (VCS en anglais) permet de stocker les différentes versions d'un ensemble de fichiers afin de faciliter l'évolutivité d'une production informatique. 
+			  <p>Un logiciel de gestion de versions (VCS en anglais) permet de stocker les différentes versions d'un ensemble de fichiers afin de faciliter l'évolutivité d'une production informatique.
 			  Par la suite nous utiliserons l'abréviation VCS pour désigner les logiciels de gestions de versions.
-			  Certains termes sont spécifiques au monde des VCS ou à GIT et il est important de bien les comprendre pour pouvoir travailler efficacement : 
+			  Certains termes sont spécifiques au monde des VCS ou à GIT et il est important de bien les comprendre pour pouvoir travailler efficacement :
 			  </p>
-			  <h4 >Commit et branche</h4> 
-			  <p>Le mot commit désigne à la fois la création d'une nouvelle version (lorsque c'est un verbe) et cette nouvelle version (lorsque c'est un nom). "Je commit" veut dire, j'entérine 
+			  <h4 >Commit et branche</h4>
+			  <p>Le mot commit désigne à la fois la création d'une nouvelle version (lorsque c'est un verbe) et cette nouvelle version (lorsque c'est un nom). "Je commit" veut dire, j'entérine
 			  les changements que j'ai effectué et ils constituent une version. "Le deuxième commit de mon projet", désigne sa deuxième version. Les commits sont organisés en arbre et la figure suivante
 			 en donne un exemple :</p>
-								
+
 				<img src="./img/arbre1.png" style="margin:30px"/>
 				Source : progit.org
 
 				<p>C0...C5 désignent des versions. Les flèches représentent des liens de parentés, entendons par là que C1 a été créé à partir de C0, C1 est postérieur à C0.
-				Au niveau de C2 le développement s'est divisé en deux branches : master et iss53. Ces branches correspondent à la notion intuitive d'une branche d'un arbre par exemple: 
+				Au niveau de C2 le développement s'est divisé en deux branches : master et iss53. Ces branches correspondent à la notion intuitive d'une branche d'un arbre par exemple:
 				la branche master va de C0
 				à C4. Ne prenez pas garde à la notation adoptée pour les branches, elle sera expliquée par la suite.</p>
 				<h4>Dépot (Repository)</h4> <p>Désigne l'ensemble des fichiers conservés par le système de gestion de version.</p>
@@ -45,16 +41,16 @@
 			  <ul>
 				<li><b>Local</b> : le dépôt se situe uniquement sur la machine de l'utilisateur</li>
 				<li><b>Centralisé</b> : les informations se situent sur un serveur central. L'information y est principalement située et le ou les utilisateurs doivent s'y connecter pour travailler</li>
-				<li><b>Distribué</b> : les informations sont stockées sur un ensemble de machines de manière distribuée. On peut reconstituer le contenu du projet à partir de n'importe quelle machine, 
+				<li><b>Distribué</b> : les informations sont stockées sur un ensemble de machines de manière distribuée. On peut reconstituer le contenu du projet à partir de n'importe quelle machine,
 				il n'y
 				a pas un point de faiblesse comme dans le cas de l'architecture centralisée.</li>
 
 
 			  </ul>
 			  A partir de maintenant nous nous intéresserons à Git qui est un système de gestion de versions distribué.
-			  <h3 id="git">Git : aperçu des possibilités</h3>	
-			  
-			  Vous commencez certainement à deviner le fonctionnement des système de gestion de version, voici une partie des avantages qu'apporte Git aux développeurs : 
+			  <h3 id="git">Git : aperçu des possibilités</h3>
+
+			  Vous commencez certainement à deviner le fonctionnement des système de gestion de version, voici une partie des avantages qu'apporte Git aux développeurs :
 			  <ul>
 			  <li>Possibilité de revenir en arrière dans le développement</li>
 			  <li>Possibilité de travailler en parallèle</li>
@@ -100,8 +96,8 @@
 			  </p>
 			  <p>gitk et son interface Tk :</p>
 			  <img src="./img/gitk.png"  style="height:100%"  />
-			  
+
 				<p>qgit et son interface Qt :</p>
-					
+
 				<img src="./img/qgit.png" style="height:100%" />
 			  </body>

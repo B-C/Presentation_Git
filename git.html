@@ -274,10 +274,10 @@
     <p>Voici quelques commandes pour créer des branches et se déplacer entre elles :
       <ul>
 	<li>Pour créer une branche au niveau du commit courant :<br />
-	  <pre>git branch [name] </pre></li>
+	  <pre>git branch &lt;name&gt; </pre></li>
 
 	<li>Pour en supprimer une :<br />
-	  <pre>git branch -d [name] </pre></li>
+	  <pre>git branch -d &lt;name&gt; </pre></li>
 
 	<li>Pour lister les branches (le * dans le listing correspond à la branche courante) :
 	  <ul>
@@ -295,10 +295,10 @@
 	  <pre>git branch -v</pre></li>
 
 	<li>Pour se déplacer sur un commit/une branche :<br />
-	  <pre>git checkout [commit/branch]</pre></li>
+	  <pre>git checkout &lt;commit/branch&gt;</pre></li>
 
 	<li>Pour créer une branche et la rendre active en même temps :<br />
-	  <pre>git checkout -b [name]</pre></li>
+	  <pre>git checkout -b &lt;name&gt;</pre></li>
     </ul></p>
 
     <h3>2 - Interactions avec un dépôt distant</h3>
@@ -315,15 +315,15 @@
           branches distantes (leur nom est préfixé par le nom du serveur, en
           général origin/)</li>
 
-	<li><pre>git push [remotename] [branch]:[remotebranch]</pre><br />
-          Envoie au serveur [remotename] les nouveaux commits de [branch] et
-          met à jour le pointeur [remotebranch] au niveau de [branch]</li>
+	<li><pre>git push &lt;remotename&gt; &lt;branch&gt;:&lt;remotebranch&gt;</pre><br />
+          Envoie au serveur &lt;remotename&gt; les nouveaux commits de &lt;branch&gt; et
+          met à jour le pointeur &lt;remotebranch&gt; au niveau de &lt;branch&gt;</li>
 
-	<li><pre>git push [remotename] [branch]</pre><br />
+	<li><pre>git push &lt;remotename&gt; &lt;branch&gt;</pre><br />
           Équivalent de :<br />
-          <pre>git push [remotename] [branch]:[branch]</pre></li>
+          <pre>git push &lt;remotename&gt; &lt;branch&gt;:&lt;branch&gt;</pre></li>
 
-	<li><pre>git push [remotename] :[remotebranch]</pre><br />
+	<li><pre>git push &lt;remotename&gt; :&lt;remotebranch&gt;</pre><br />
           Supprime la branche distante</li>
       </ul>
     </p>
@@ -331,9 +331,9 @@
       Pour tracker une branche, c'est-à-dire qu'elle soit associée à une branche
       distante, plusieurs moyens :
       <ul>
-	<li><pre>git push -u [remotename] [branch]:[remotebranch]</pre></li>
-	<li><pre>git checkout -b [branch] [remotename]/[branch]</pre></li>
-	<li><pre>git checkout --track [remotename]/[branch]</pre></li>
+	<li><pre>git push -u &lt;remotename&gt; &lt;branch&gt;:&lt;remotebranch&gt;</pre></li>
+	<li><pre>git checkout -b &lt;branch&gt; &lt;remotename&gt;/&lt;branch&gt;</pre></li>
+	<li><pre>git checkout --track &lt;remotename&gt;/&lt;branch&gt;</pre></li>
       </ul>
       On peut alors utiliser push et pull(voir plus loin) sans argument sur ces
       branches.
@@ -356,9 +356,9 @@
     <p> La procédure pour faire un merge est la suivante :
       <ul>
 	<li>Se déplacer dans la branch où merger :<br />
-	  <pre>git checkout [branch1]</pre></li>
+	  <pre>git checkout &lt;branch1&gt;</pre></li>
 	<li>Merger :<br />
-	  <pre>git merge [branch2]</pre></li>
+	  <pre>git merge &lt;branch2&gt;</pre></li>
       </ul>
     <p>Il peut y avoir un <em>merge conflict</em> si git n'arrive pas à
       fusionner un ou plusieurs fichiers. Cela arrive s'ils ont été
@@ -367,13 +367,13 @@
 	<li> Faire un <pre>git status</pre> pour voir les problèmes</li>
 	<li> Les résoudre par exemple avec <pre>git mergetool</pre> qui
           utilise le logiciel configuré avec
-          <pre>git config --global merge.tool [software]</pre>.<br />
+          <code>git config --global merge.tool &lt;software&gt;</code>.<br />
           Git ajoute des balises pour délimiter les problèmes :<br />
-          <code style="display:block"><<<<<<< [branch1]:[filename]<br />
-					      [ligne(s) version 1]<br />
+          <code style="display:block"><<<<<<< &lt;branch1&gt;:&lt;filename&gt;<br />
+					      &lt;ligne(s) version 1&gt;<br />
 					      =======<br />
-					      [ligne(s) version 2]<br />
-					      >>>>>>>> [branch2]:[filename]</code></li>
+					      &lt;ligne(s) version 2&gt;<br />
+					      >>>>>>>> &lt;branch2&gt;:&lt;filename&gt;</code></li>
 	<li> Il ne reste plus qu'à faire un commit</li>
       </ul>
     </p>
@@ -382,7 +382,7 @@
       pas oublier de tester le code résultant du merge.</p>
 
     <p> Notez aussi la commande
-      <pre>git pull [remotename] [branch]:[branch]</pre>
+      <pre>git pull &lt;remotename&gt; &lt;branch&gt;:&lt;branch&gt;</pre>
       qui fetch et ensuite merge la branche.</p>
 
 
@@ -409,13 +409,13 @@
 
     <p> Les commandes pour réaliser cela sont :
       <ul>
-	<li><pre>git rebase [branch]</pre> rebase la branche courante sur
+	<li><pre>git rebase &lt;branch&gt;</pre> rebase la branche courante sur
 	  branch</li>
-	<li><pre>git rebase [--onto][branch1] [branch2]</pre> rebase branch2
+	<li><pre>git rebase &lt;--onto&gt;&lt;branch1&gt; &lt;branch2&gt;</pre> rebase branch2
 	  sur branch1</li>
 	<li>On utilise ensuite la commande merge dans branch pour faire un
 	  fastforward<br />
-	  <pre>git checkout [branch1] && git merge [branch2]</pre></li>
+	  <pre>git checkout &lt;branch1&gt; && git merge &lt;branch2&gt;</pre></li>
       </ul>
     </p>
     <p> Il peut y avoir avoir des conflits comme pour un merge. Après les avoir

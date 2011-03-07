@@ -93,6 +93,7 @@
   st = status
   a  = add</pre>
 
+
                           Ici il faut comprendre que mon nom et mon email sont spécifiés, que j'utilise vim et que j'utilise des alias pour quatre commandes.
                           Pour modifier ce fichier par le biais de la ligne de commande on utilise la commande git config avec la syntaxe suivante :
                           <pre>git config --global catégorie.champ valeur</pre>
@@ -116,29 +117,31 @@
 
 <h2 id="part2">II. Commandes de base</h2>
 <h3>Commande <code>git clone</code></h3>
-<p>
-Essayons de voir ce qui se passe dans un projet.
-Au départ, nous supposons que notre projet est
-déjà présent dans un dépôt distant.
-Pour télécharger les fichiers (i.e. pour cloner le dépôt), nous utilisons la commande
-suivante :
-</p>
+
+<p> Essayons de voir ce qui se passe dans un projet.  Au départ, nous
+supposons que notre projet est déjà présent dans un dépôt distant.
+Pour télécharger les fichiers (i.e. pour cloner le dépôt), nous
+utilisons la commande suivante : </p>
+
 <pre>git clone &lt;URL&gt;</pre>
-         <p>
-par exemple :
-         <code>git clone elecinf381@hg.comelec.enst.fr:2011/PrenomNom.git</code>
-Notre machine contient une copie du dépot distant. Maintenant, si nous voulons
-ajouter un nouveau fichier à notre projet, nous créons le fichier, par exemple <code>EthernetDriver.c</code>, mais git ne sait
-rien sur ce fichier. L'état actuel du fichier est dit <em>untracked</em>.
+
+<p> par exemple : <code>git clone elecinf381@hg.comelec.enst.fr:2011/PrenomNom.git</code>
+Notre machine contient une copie du dépot distant. Maintenant, si nous
+voulons ajouter un nouveau fichier à notre projet, nous créons le
+fichier, par exemple <code>EthernetDriver.c</code>, mais git ne sait
+rien sur ce fichier. L'état actuel du fichier est dit
+<em>untracked</em>.
 </p>
+
 <h3>Commande <code>git status</code></h3>
 
-         <p>
-         Lorsque l'on a modifié le contenu du fichier, il devient <em>modified</em> pour git.
-         Le répertoire dans lequel nous travaillons est appelé <em>répertoire de travail</em> ou <em>working
-directory</em>. Nous utilisons ce répertoire pour travailler.
-Pour obtenir le statut des différents fichiers du dépôt on utilise la commande <code>git status</code>.
-</p>
+<p> Lorsque l'on a modifié le contenu du fichier, il devient
+<em>modified</em> pour git.  Le répertoire dans lequel nous
+travaillons est appelé <em>répertoire de travail</em> ou <em>working
+directory</em>. Nous utilisons ce répertoire pour travailler.  Pour
+obtenir le statut des différents fichiers du dépôt on utilise la
+commande <code>git status</code>.  </p>
+
          <p>
          Voilà ce que renvoie cette commande.
          <pre>$ git status Etherenet.c
@@ -152,45 +155,60 @@ Pour obtenir le statut des différents fichiers du dépôt on utilise la command
 
 <h3>Commande <code>git add</code></h3>
 
-         <p>
-Pour ajouter ce fichier dans dépôt local, nous utilisons la commande <code>git add &lt;file&gt;</code>
-Après cela, git commencera le suivi de ce fichier et le statut de ce fichier passera de <em>untracked</em> à
-<em>tracked</em>.
-Lors d'un changement du contenu de ce fichier git detecte ce changement et le fichier passe dans l'état <em>modified</em>
-Après avoir fait tous les changements, nous devons tester nos modifications et une fois
-satisfaits nous pouvons procéder à l'enregistrement de ces changements. C'est ce que l'on appelle un <em>commit</em>.
-Avant de regrouper ces fichiers au sein d'un commit, il faut préciser à git lesquels il doit envoyer pour constituer ce commit.
-Pour ce faire on utilise soit la commande <code>git add</code> suivie du nom d'un fichier. On peut utiliser la commande <code>git add -u</code> qui
-tient compte de toutes les modifications effectuées sur les fichiers déjà suivis par git.
-</p>
-<h3>Commande <code>git rm</code></h3>
 <p>
-Pour arrêter de suivre un fichier nous utilisons la commande <code>git rm</code> suivi du nom d'un fichier.
+Pour ajouter ce fichier dans dépôt local, nous utilisons la
+commande <code>git add &lt;file&gt;</code> Après cela, git commencera
+le suivi de ce fichier et le statut de ce fichier passera de
+<em>untracked</em> à <em>tracked</em>.  Lors d'un changement du
+contenu de ce fichier git detecte ce changement et le fichier passe
+dans l'état <em>modified</em> Après avoir fait tous les changements,
+nous devons tester nos modifications et une fois satisfaits nous
+pouvons procéder à l'enregistrement de ces changements. C'est ce que
+l'on appelle un <em>commit</em>.  Avant de regrouper ces fichiers au
+sein d'un commit, il faut préciser à git lesquels il doit envoyer pour
+constituer ce commit.  Pour ce faire on utilise soit la commande
+<code>git add</code> suivie du nom d'un fichier. On peut utiliser la
+commande <code>git add -u</code> qui tient compte de toutes les
+modifications effectuées sur les fichiers déjà suivis par git.
+</p>
 
+<h3>Commande <code>git rm</code></h3>
+
+<p>
+Pour arrêter de suivre un fichier nous utilisons la commande
+<code>git rm</code> suivi du nom d'un fichier.
 </p>
 
 
 <h3>Commande <code>git commit</code></h3>
 
 
-          <p>
+<p>
 
-<pre>git commit</pre> permet d'enregistrer les changements en <em>staging area</em> dans le dépôt.
-Seuls les changements se trouvant dans la <em>staging area</em> feront partie du prochain commit.
-On peut utiliser la commande :
-<pre>git commit -a</pre>
-pour indiquer à git d'envoyer dans le prochain commit tous les fichiers déjà suivis en prenant compte toutes les modifications effectuées depuis le
-dernier commit les ayant concernés.
+<pre>git commit</pre> permet d'enregistrer les changements en
+<em>staging area</em> dans le dépôt.  Seuls les changements se
+trouvant dans la <em>staging area</em> feront partie du prochain
+commit.  On peut utiliser la commande : <pre>git commit -a</pre> pour
+indiquer à git d'envoyer dans le prochain commit tous les fichiers
+déjà suivis en prenant compte toutes les modifications effectuées
+depuis le dernier commit les ayant concernés.
 </p>
 
 <h3>Commande <code>git revert</code></h3>
 <h3>Commande <code>git reset</code></h3>
+<h3>Commande <code>git show</code></h3>
+<h3>Commande <code>git bisect</code></h3>
+<h3>Commande <code>git grep</code></h3>
 
 
-<h3>Commandes <code>git log</code> et <code>git diff</code></h3>
+<h3>Commande <code>git log</code></h3>
 <p>
 <pre>git log </pre>
 <pre>git log &lt;file&gt;</pre>
+</p>
+
+<h3>Commande <code>git diff</code></h3>
+<p>
 <pre>git diff &lt;file&gt;</pre>
 </p>
 

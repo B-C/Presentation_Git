@@ -1,18 +1,19 @@
-<html>
+  <html>
   <head>
     <meta http-equiv="content-language" content="fr" />
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <title>Tutoriel GIT</title>
     <style>
-      img { height: 300px; margin: 1em auto; }
-      pre { background: black; color: white; font-weight: bold;}
-      .image { text-align: center; }
+      .gitimg { height: 400px; margin: 1em auto; }
+      pre { background: #333333; color: white; font-weight: bold; padding: 1em;}
+      .image { text-align: center; margin-bottom: 1em;w }
       .caption { font-style: italic; font-size: 0.7em; }
     </style>
   </head>
   <body>
 
-    <h1>Tutoriel GIT</h1>
+    <h1 style="font-size: 3em">Tutoriel GIT</h1>
+
     <strong>Auteurs : </strong>Bertrand, Clément, Laurent et Vaibhav.
 
     <h2>Table des matières</h2>
@@ -113,19 +114,18 @@
     Git se configure soit en ligne de commande, soit directement dans un fichier
     de config qui se trouve dans votre home : .gitconfig.
     En voici un exemple :
-    <pre>
-      [user]
-      name = Laurent Charignon
-      email = laurent.charignon@telecom-paristech.fr
-      [core]
-      editor = vim
 
-      [alias]
-      co = checkout
-      br = branch
-      st = status
-      a  = add</pre>
+<pre>[user]
+  name = Laurent Charignon
+  email = laurent.charignon@telecom-paristech.fr
+[core]
+  editor = vim
 
+[alias]
+  co = checkout
+  br = branch
+  st = status
+  a  = add</pre>
 
     Ici il faut comprendre que mon nom et mon email sont spécifiés, que j'utilise
     vim et que j'utilise des alias pour quatre commandes.
@@ -278,20 +278,22 @@
       pas se permettre d'avoir une perte d'historique. Par exemple si
       nous sommes dans la situation suivante :
 
-<pre>commit 67d9dfa351f642159480b306f1004c158a283e92
-Author: John Doe <doe@enst.fr>
+<pre>$ git log
+
+commit 67d9dfa351f642159480b306f1004c158a283e92
+Author: John Doe &lt;doe@enst.fr&gt;
 Date:   Mon Mar 7 21:52:24 2011 +0100
 
     Fix issue #1344.
 
 commit dc7767340c492fd93b55955a28572c98636a10f7
-Author: John Doe <doe@enst.fr>
+Author: John Doe &lt;doe@enst.fr&gt;
 Date:   Mon Mar 7 21:38:06 2011 +0100
 
     Add feature #755.
 
 commit b12caf55ad9c254b1997435031da49a5a05f902b
-Author: John Doe <doe@enst.fr>
+Author: John Doe &lt;doe@enst.fr&gt;
 Date:   Mon Mar 7 21:27:09 2011 +0100
 
     Add feature #740.</pre>
@@ -468,8 +470,8 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
       fusionner un ou plusieurs fichiers. Cela arrive s'ils ont été
       modifiés aux mêmes lignes dans les deux branches. Dans ce cas-là :
       <ul>
-	<li> Faire un <pre>git status</pre> pour voir les problèmes</li>
-	<li> Les résoudre par exemple avec <pre>git mergetool</pre> qui
+	<li> Faire un <code>git status</code> pour voir les problèmes</li>
+	<li> Les résoudre par exemple avec <code>git mergetool</code> qui
           utilise le logiciel configuré avec
           <code>git config --global merge.tool &lt;software&gt;</code>.<br />
           Git ajoute des balises pour délimiter les problèmes :<br />
@@ -534,9 +536,10 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
       </ul>
     </p>
     <p> Il peut y avoir avoir des conflits comme pour un merge. Après les avoir
-      résolus avec <pre>git mergetool</pre> faire un
+      résolus avec <code>git mergetool</code> faire un :
       <pre>git rebase --continue</pre>
-      <br /><pre>git rebase --abort</pre> permet d'annuler un rebase en cours.
+      <br />
+      <pre>git rebase --abort</pre> permet d'annuler un rebase en cours.
     </p>
 
     <p>Attention à ne pas faire de rebase d'une branche d'où part d'autres
@@ -595,7 +598,7 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
     </p>
 
     <div class="image">
-      <img src="img/2.png" alt="Clonage d'un dépôt" />
+      <img class="gitimg" src="img/2.png" alt="Clonage d'un dépôt" />
       <div class="caption">Figure 1 : Clonage d'un dépôt</div>
     </div>
 
@@ -665,7 +668,7 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
     </p>
 
     <div class="image">
-      <img src="img/3.png" alt="Création d'une branche" />
+      <img class="gitimg" src="img/3.png" alt="Création d'une branche" />
       <div class="caption">Figure 2 : Création d'une branche</div>
     </div>
 
@@ -693,9 +696,9 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
       modifications qui ajoutent une fonctionnalité à nos
       développements :
 
-      <pre>&lt;modifications&gt; ...
-	git add &lt;files&gt;
-	git commit</pre>
+<pre>&lt;modifications&gt; ...
+git add &lt;files&gt;
+git commit</pre>
 
       Les commits devant rester atomiques, supposons que l'on réitère
       ces opérations trois fois pour ajouter notre fonctionnalité. La
@@ -705,7 +708,7 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
     </p>
 
     <div class="image">
-      <img src="img/3-quad.png" alt="Modifications" />
+      <img class="gitimg" src="img/3-quad.png" alt="Modifications" />
       <div class="caption">Figure 3 : Modifications</div>
     </div>
 
@@ -732,7 +735,7 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
     </p>
 
     <div class="image">
-      <img src="img/4.png" alt="Mise à jour d'une branche distante" />
+      <img class="gitimg" src="img/4.png" alt="Mise à jour d'une branche distante" />
       <div class="caption">Figure 4 : Mise à jour d'une branche distante</div>
     </div>
 
@@ -793,7 +796,7 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
     </p>
 
     <div class="image">
-      <img src="img/5.png" alt="Rebaser une branche sur une autre" />
+      <img class="gitimg" src="img/5.png" alt="Rebaser une branche sur une autre" />
       <div class="caption">Figure 5 : Rebaser une branche sur une autre</div>
     </div>
 
@@ -856,9 +859,9 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
 
       Git affiche un message d'erreur de la forme :
 
-      <pre  >To elecinf381@hg.comelec.enst.fr:2011/Project.git
-	! [rejected]        master -> master (non-fast forward)
-	error: failed to push some refs to ‘elecinf381@hg.comelec.enst.fr:2011/Project.git’</pre>
+<pre>To elecinf381@hg.comelec.enst.fr:2011/Project.git
+! [rejected]        master -> master (non-fast forward)
+error: failed to push some refs to ‘elecinf381@hg.comelec.enst.fr:2011/Project.git’</pre>
 
       Ce push est spécial, il transfère les nouveaux
       commits <code>3a4</code> et <code>83d</code> sur le serveur puis
@@ -883,7 +886,7 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
     </p>
 
     <div class="image">
-      <img src="img/6.png" alt="Synchronisation forcée (non fast-forward) avec du serveur" />
+      <img class="gitimg" src="img/6.png" alt="Synchronisation forcée (non fast-forward) avec du serveur" />
       <div class="caption">Figure 6 : Synchronisation forcée (non fast-forward) avec du serveur</div>
     </div>
 
@@ -906,10 +909,9 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
       dans <code>master</code>. Pour cela plusieurs solutions. Nous
       pouvons le faire en local et pusher sur le serveur :
 
-      <pre>git checkout master
-	git merge b1
-	git push origin master
-      </pre>
+<pre>git checkout master
+git merge b1
+git push origin master</pre>
 
       Ici, la branche <code>b1</code> étant au sommet de master aucun
       commit n'est introduit par le merge et <code>master</code> est
@@ -924,8 +926,8 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
       On peut également faire évoluer la branche <code>master</code>
       distante dans un premier temps puis récupérer les changements :
 
-      <pre>git push origin b1:master
-	git pull origin master</pre>
+<pre>git push origin b1:master
+git pull origin master</pre>
 
       La première commande synchronise les commits avec le serveur
       puis déplace la branche <code>master</code> distante au niveau
@@ -938,10 +940,8 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
       supprimé les branches <code>b1</code> locale et distante à
       l'aide des commandes :
 
-      <pre>
-	git branch -d b1
-	git push origin :b1
-      </pre>
+<pre>git branch -d b1
+git push origin :b1</pre>
     </p>
 
 
@@ -954,13 +954,13 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
     </p>
 
     <div class="image">
-      <img src="img/7.png" alt="Intégration des changements de b1 dans master sur le serveur" />
+      <img class="gitimg" src="img/7.png" alt="Intégration des changements de b1 dans master sur le serveur" />
       <div class="caption">Figure 7 : Intégration des changements
         de <code>b1</code> dans <code>master</code> sur le serveur</div>
     </div>
 
     <div class="image">
-      <img src="img/8.png" alt="Suppression des branches et synchronisation avec la branche master distante" />
+      <img class="gitimg" src="img/8.png" alt="Suppression des branches et synchronisation avec la branche master distante" />
       <div class="caption">Figure 8 : Suppression des branches et
         synchronisation avec la branche <code>master</code>
         distante</div>
@@ -973,8 +973,8 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
       de <code>master</code>. De la même manière que précédemment nous
       allons donc utiliser un rebase :
 
-      <pre>git rebase master b2
-	git push -f origin b2</pre>
+<pre>git rebase master b2
+git push -f origin b2</pre>
 
       Les commits de la branche <code>b2</code> sont réappliqués au
       sommet de <code>master</code>. Et branche <code>b2</code>
@@ -982,7 +982,7 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
     </p>
 
     <div class="image">
-      <img src="img/9.png" alt="Mise à jour de b2 sur le dépôt distant" />
+      <img class="gitimg" src="img/9.png" alt="Mise à jour de b2 sur le dépôt distant" />
       <div class="caption">Figure 9 : Mise à jour de <code>b2</code> sur le dépôt distant</div>
     </div>
 
@@ -991,10 +991,10 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
       Enfin on veut intégrer les changements de la
       branche <code>b2</code> dans <code>master</code>. Pour cela on exécute les commandes :
 
-      <pre>git push origin b2:master
-	git branch -D b2
-	git push origin :b2
-	git pull origin master</pre>
+<pre>git push origin b2:master
+git branch -D b2
+git push origin :b2
+git pull origin master</pre>
 
       La figure 10 montre une branche <code>master</code>,
       synchronisée avec le dépôt distant, qui contient tous les
@@ -1005,7 +1005,7 @@ Date:   Mon Mar 7 21:27:09 2011 +0100
     </p>
 
     <div class="image">
-      <img src="img/10.png" alt="Intégration de b2 dans master" />
+      <img class="gitimg" src="img/10.png" alt="Intégration de b2 dans master" />
       <div class="caption">Figure 10 : Intégration de <code>b2</code>
         dans <code>master</code></div>
     </div>
